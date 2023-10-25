@@ -20,7 +20,7 @@ class Vector:
             elif not all(isinstance(elem, (int, float)) for elem in elements):
                 raise AssertionError("Vector must only contain float, "
                                      "int or complex numbers.")
-            else:
+            else: # TODO : Tout mettre en float
                 self.elements = elements
                 print(self.elements)
                 self.dimension = len(elements)
