@@ -6,8 +6,7 @@ class Vector:
                 raise AssertionError("Constructor takes only 1 list.")
             elements = elements[0]
 
-            if not all(isinstance(elem, (int, float, list))
-                       for elem in elements):
+            if not all(isinstance(elem, (int, float, list)) for elem in elements) or len(elements) == 0:
                 raise AssertionError("Vector must only contain float, int or complex numbers.")
 
             if all(isinstance(elem, list) for elem in elements):
@@ -19,6 +18,7 @@ class Vector:
                     c_elements.append(elem)
                 self.elements = c_elements
                 self.dimension = len(c_elements)
+                self.complex = True
 
             elif not all(isinstance(elem, (int, float)) for elem in elements):
                 raise AssertionError("Vector must only contain float, int or complex numbers.")
@@ -27,16 +27,17 @@ class Vector:
                 elements = [float(elem) for elem in elements]
                 self.elements = elements
                 self.dimension = len(elements)
+                self.complex = False
 
         except AssertionError as e:
             print(e)
             raise AssertionError("Error while creating Vector")
 
-    def dim(self):
+    def dim(self) -> None:
         print(f"Size of the vector is : {self.dimension}")
 
-    def print(self):
-        if isinstance(self.elements[0], list):
+    def print(self) -> None:
+        if self.complex is True:
             print("[", end='')
             for i in range(self.dimension):
                 if self.elements[i][1] < 0:
