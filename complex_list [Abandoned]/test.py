@@ -36,3 +36,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+    c_nb = 4.7 + 0.2j
+    print(type(c_nb))
+    print(c_nb)
