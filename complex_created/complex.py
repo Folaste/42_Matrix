@@ -17,3 +17,66 @@ class Complex:
 
     def __repr__(self) -> str:
         return f"Complex({self._real}, {self._imaginary})"
+
+    def __add__(self, other):
+        if isinstance(other, Complex):
+            return Complex(self._real + other._real, self._imaginary + other._imaginary)
+        elif isinstance(other, (int, float)):
+            return Complex(self._real + other, self._imaginary)
+
+    def __iadd__(self, other):
+        if isinstance(other, Complex):
+            self._real += other._real
+            self._imaginary = other._imaginary
+        elif isinstance(other, (int, float)):
+            self._real += other
+        return self
+
+    def __radd__(self, other):
+        return self.__add__(other)
+
+    def __sub__(self, other):
+        if isinstance(other, Complex):
+            return Complex(self._real - other._real, self._imaginary - other._imaginary)
+        elif isinstance(other, (int, float)):
+            return Complex(self._real - other, self._imaginary)
+
+    def __isub__(self, other):
+        if isinstance(other, Complex):
+            self._real -= other._real
+            self._imaginary -= other._imaginary
+        elif isinstance(other, (int, float)):
+            self._real -= other
+        return self
+
+    def __rsub__(self, other):
+        return self.__add__(-1 * other)
+
+    def __mul__(self, other):
+        if isinstance(other, Complex):
+            return Complex(self._real * other._real - self._imaginary * other._imaginary,
+                           self._real * other._imaginary + self._imaginary * other._real)
+        elif isinstance(other, (int, float)):
+            return Complex(self._real * other, self._imaginary * other)
+
+    def __imul__(self, other):
+        if isinstance(other, Complex):
+            self._real = self._real * other._real - self._imaginary * other._imaginary
+            self._imaginary = self._real * other._imaginary + self._imaginary * other._real
+        elif isinstance(other, (int, float)):
+            self._real *= other
+            self._imaginary *= other
+        return self
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
+
+    def __truediv__(self, other):
+        if isinstance(other, Complex):
+            return Complex((self._real * other._real + self._imaginary * other._imaginary) / (
+                                        other._real * other._real + other._imaginary * other._imaginary),
+                           (other._real * self._imaginary - self._real * other._imaginary) / (
+                                        other._real * other._real + other._imaginary * other._imaginary))
+        elif isinstance(other, (int, float)):
+            return Complex(self._real / other, self._imaginary / other)
+

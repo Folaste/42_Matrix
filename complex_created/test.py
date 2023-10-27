@@ -2,11 +2,13 @@ from complex import Complex
 
 
 def main():
-    c = Complex(2, 9)
-    print(c)
-    repr_c = repr(c)
-    new_c = eval(repr_c)
-    print(new_c)
+    a = Complex(2, 3)
+    b = Complex(4, 2)
+    c = 2 + 3j
+    d = 4 + 2j
+
+    print(a / b)
+    print(c / d)
 
 
 if __name__ == "__main__":
