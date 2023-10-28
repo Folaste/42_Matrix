@@ -1,3 +1,5 @@
+
+
 class Matrix:
 
     def __init__(self, *elements) -> None:
@@ -46,3 +48,13 @@ class Matrix:
 
     def __repr__(self) -> str:
         return "Matrix({})".format(self._elements)
+
+    def shape(self) -> (int, int):
+        return self._rows, self._columns
+
+    def is_square(self) -> bool:
+        return self._rows == self._columns
+
+    def to_vector(self):
+        from vector import Vector
+        return Vector([elem for row in self._elements for elem in row])

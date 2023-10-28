@@ -1,3 +1,6 @@
+
+
+
 class Vector:
 
     def __init__(self, *elements) -> None:
@@ -25,3 +28,15 @@ class Vector:
 
     def __repr__(self) -> str:
         return f"Vector({self._elements})"
+
+    def dim(self) -> int:
+        return self._dimension
+
+    def to_matrix(self, rows, columns):
+        from matrix import Matrix
+        try:
+            if self._dimension != rows * columns:
+                raise AssertionError("Matrix shape's product must be equal to vector's dimension")
+            return Matrix([self._elements[i:i+columns] for i in range(0, len(self._elements), columns)])
+        except AssertionError as e:
+            print(e)

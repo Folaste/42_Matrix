@@ -3,12 +3,15 @@ from matrix import Matrix
 from vector import Vector
 
 
-
-
 def main():
-    vect = Matrix([[Complex(1, 2), Complex(2, 1)], [Complex(1, 2), Complex(2, 1)]])
-    print(str(vect))
-    print(repr(vect))
+    matrix = Matrix([[Complex(1, 2), Complex(2, 1)], [Complex(1, 2), Complex(2, 1)]])
+    vect = matrix.to_vector()
+    print(vect)
+    print()
+    vector = Vector([1, 2, 3, 4, 5])
+    print(vector)
+    print(repr(vector))
+    vector.dim()
 
 
 if __name__ == "__main__":
