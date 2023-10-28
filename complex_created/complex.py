@@ -13,7 +13,8 @@ class Complex:
             raise AssertionError("Error while creating Complex")
 
     def __str__(self) -> str:
-        return f"{self._real} {('+', '-')[self._imaginary < 0]} {(1, -1)[self._imaginary < 0] * self._imaginary}i"
+        sign = "+" if self._imaginary >= 0 else "-"
+        return f"{self._real} {sign} {abs(self._imaginary)}i"
 
     def __repr__(self) -> str:
         return f"Complex({self._real}, {self._imaginary})"

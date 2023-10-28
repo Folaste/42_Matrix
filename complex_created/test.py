@@ -1,14 +1,14 @@
 from complex import Complex
+from matrix import Matrix
+from vector import Vector
+
+
 
 
 def main():
-    a = Complex(2, 3)
-    b = Complex(4, 2)
-    c = 2 + 3j
-    d = 4 + 2j
-
-    print(a / b)
-    print(c / d)
+    vect = Matrix([[Complex(1, 2), Complex(2, 1)], [Complex(1, 2), Complex(2, 1)]])
+    print(str(vect))
+    print(repr(vect))
 
 
 if __name__ == "__main__":
