@@ -42,3 +42,38 @@ class Vector:
             return Matrix([self._elements[i:i+columns] for i in range(0, len(self._elements), columns)])
         except AssertionError as e:
             print(e)
+
+    # ex00
+    def __add__(self, other):
+        try:
+            if not isinstance(other, Vector):
+                raise AssertionError("Vector can only be add with another vector.")
+            if self._dimension != other._dimension:
+                raise AssertionError("Vectors must have same size.")
+
+            return Vector([self._elements[i] + other._elements[i] for i in range(0, self._dimension)])
+
+        except AssertionError as e:
+            print(e)
+
+    def __sub__(self, other):
+        try:
+            if not isinstance(other, Vector):
+                raise AssertionError("Vector can only be subtract with another vector.")
+            if self._dimension != other._dimension:
+                raise AssertionError("Vector must have same size.")
+
+            return Vector([self._elements[i] - other._elements[i] for i in range(0, self._dimension)])
+
+        except AssertionError as e:
+            print(e)
+
+    def scl(self, scalar):
+        try:
+            if not isinstance(scalar, (int, float, Complex)):
+                raise AssertionError("Scalar must be a number (Real or Complex).")
+
+            return Vector([self._elements[i] * scalar for i in range(0, self._dimension)])
+
+        except AssertionError as e:
+            print(e)

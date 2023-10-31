@@ -60,3 +60,48 @@ class Matrix:
     def to_vector(self):
         from vector import Vector
         return Vector([elem for row in self._elements for elem in row])
+
+    # ex00
+    def __add__(self, other):
+        try:
+            if not isinstance(other, Matrix):
+                raise AssertionError("Matrix can only be add with another matrix.")
+            if self._rows != other._rows or self._columns != other._columns:
+                raise AssertionError("Matrix must have same shape.")
+
+            result = []
+            for i in range(0, self._rows):
+                result_line = []
+                for j in range(0, self._columns):
+                    result_line.append(self._elements[i][j] + other._elements[i][j])
+                result.append(result_line)
+            return Matrix(result)
+
+        except AssertionError as e:
+            print(e)
+
+    def __sub__(self, other):
+        try:
+            if not isinstance(other, Matrix):
+                raise AssertionError("Matrix can only be subtract with another matrix.")
+            if self._rows != other._rows or self._columns != other._columns
+                raise AssertionError("Matrix must have same shape.")
+
+            result = []
+            for i in range(0, self._rows):
+                result_line = []
+                for j in range(0, self._columns):
+                    result_line.append(self._elements[i][j] - other._elements[i][j])
+                result.append(result_line)
+            return Matrix(result)
+
+        except AssertionError as e:
+            print(e)
+
+    def scl(self, scalar):
+        try:
+            if not isinstance(scalar, (int, float, Complex)):
+                raise AssertionError("Scalar must be a number (Real or Complex)")
+
+            result = []
+            for i in range(0, self.,)
