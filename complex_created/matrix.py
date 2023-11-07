@@ -84,7 +84,7 @@ class Matrix:
         try:
             if not isinstance(other, Matrix):
                 raise AssertionError("Matrix can only be subtract with another matrix.")
-            if self._rows != other._rows or self._columns != other._columns
+            if self._rows != other._rows or self._columns != other._columns:
                 raise AssertionError("Matrix must have same shape.")
 
             result = []
@@ -104,4 +104,12 @@ class Matrix:
                 raise AssertionError("Scalar must be a number (Real or Complex)")
 
             result = []
-            for i in range(0, self.,)
+            for i in range(0, self._rows):
+                result_line = []
+                for j in range(0, self._columns):
+                    result_line.append(self._elements[i][j] * scalar)
+                result.append(result_line)
+            return Matrix(result)
+
+        except AssertionError as e:
+            print(e)

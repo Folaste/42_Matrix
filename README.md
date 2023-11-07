@@ -11,3 +11,8 @@ Instead, there are 2 folders after a misunderstanding about the second bonus:
  - The complex_created folder, which contains the same classes, but using a Complex class.
 
 For each exercise, the 4 classes are imported with the following names B_[Class] for the built-in complex type and C_[Class] for the complex type created by my Complex class.
+
+## Structure
+
+File `creation.py` shows how to create Vectors and Matrix and all exceptions at creation of objects.
+Furthermore, there is one file per exercise, from `ex00.py` to `ex<n>.py`.
