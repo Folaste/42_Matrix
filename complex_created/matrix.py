@@ -17,6 +17,9 @@ class Matrix:
                     if len(line) != width:
                         raise AssertionError("All lists in matrix must have same length.")
 
+            nb_rows = len(elements)
+            nb_cols = len(elements[0])
+
             for line in elements:
                 if len(line) == 0:
                     raise AssertionError("Lines must contain numbers.")
@@ -36,9 +39,11 @@ class Matrix:
                     and not all(isinstance(elem, Complex) for elem in test_col)):
                 raise AssertionError("All elements must be in the same type. (Real or Complex numbers)")
 
+            elements = [[elements[j][i] for j in range(nb_rows)] for i in range(nb_cols)]
+
             self._elements = elements
-            self._rows = len(elements)
-            self._columns = len(elements[0])
+            self._rows = nb_cols
+            self._columns = nb_rows
 
         except AssertionError as e:
             print(e)

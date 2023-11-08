@@ -39,7 +39,7 @@ class Vector:
         try:
             if self._dimension != rows * columns:
                 raise AssertionError("Matrix shape's product must be equal to vector's dimension")
-            return Matrix([self._elements[i:i+columns] for i in range(0, len(self._elements), columns)])
+            return Matrix([self._elements[i:i+rows] for i in range(0, len(self._elements), rows)])
         except AssertionError as e:
             print(e)
 

@@ -4,14 +4,12 @@ from vector import Vector
 
 
 def main():
-    # matrix = Matrix([[Complex(1, 2), Complex(2, 1)], [Complex(1, 2), Complex(2, 1)]])
-    # vect = matrix.to_vector()
-    # print(vect)
-    # print()
-    vector = Vector([1, 2, 3, 4, 5])
-    print(vector.scl(3))
-    print(repr(vector))
-    vector.dim()
+    a = Matrix([[1, 2, 3], [4, 5, 6]])
+    vect = a.to_vector()
+    print(a)
+    print(vect)
+    new = vect.to_matrix(3,2)
+    print(new)
 
 
 if __name__ == "__main__":
