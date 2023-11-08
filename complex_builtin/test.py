@@ -1,5 +1,5 @@
-# from vector import Vector
-from matrix import Matrix
+from vector import Vector
+# from matrix import Matrix
 
 
 def main():
@@ -7,16 +7,8 @@ def main():
     # except AssertionError as e:
     #     print(e)
     try:
-        a = Matrix([[1, 1, 1], [1, 1, 1]])
-        b = Matrix([[1, 1, 1], [1, 1, 1]])
-
-
-        print(a, end='\n\n')
-        obj = eval(repr(a))
-
-        print(obj)
-
-        print(a - b)
+        a = Vector([1, 11274372, 3])
+        print(a)
     except AssertionError as e:
         print(e)
 

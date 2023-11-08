@@ -24,8 +24,12 @@ class Vector:
             raise AssertionError("Error while creating Vector")
 
     def __str__(self):
-        elements_str = ", ".join(str(element) for element in self._elements)
-        return f"[{elements_str}]"
+        max_width = max(len(str(element)) for element in self._elements)
+        string = ""
+        for elem in self._elements:
+            centered_element = str(elem).center(max_width)
+            string += "| {:} |\n".format(centered_element)
+        return string
 
     def __repr__(self):
         elements_repr = ", ".join(repr(element) for element in self._elements)

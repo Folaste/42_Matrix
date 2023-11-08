@@ -1,11 +1,12 @@
 from complex_builtin.matrix import Matrix as B_Matrix
 from complex_builtin.vector import Vector as B_Vector
+
 from complex_created.matrix import Matrix as C_Matrix
 from complex_created.vector import Vector as C_Vector
 from complex_created.complex import Complex
 
 
-def main():
+def main_builtin():
     print("\x1b[31mComplex built-in\x1b[0m")
     print("\x1b[34mVector\x1b[0m")
     print()
@@ -101,7 +102,9 @@ def main():
         print(mat)
     except AssertionError as e:
         print(e)
-    print()
+
+
+def main_created():
     print("\x1b[31mComplex created\x1b[0m")
     print("\x1b[34mComplex\x1b[0m")
     print()
@@ -220,8 +223,9 @@ def main():
         print(mat)
     except AssertionError as e:
         print(e)
-    print()
 
 
 if __name__ == "__main__":
-    main()
+    main_builtin()
+    print()
+    main_created()
