@@ -36,6 +36,8 @@ class Matrix:
                     and not all(isinstance(elem, complex) for elem in test_col)):
                 raise AssertionError("All elements must be in the same type. (Real or Complex numbers)")
 
+            self._repr = elements  # Only used by __repr__()
+
             elements = [[elements[j][i] for j in range(nb_rows)] for i in range(nb_cols)]
 
             self._elements = elements
@@ -50,7 +52,7 @@ class Matrix:
         return "{}".format('\n'.join(map(str, self._elements)))
 
     def __repr__(self) -> str:
-        return "Matrix({})".format(self._elements)
+        return "Matrix({})".format(self._repr)
 
     def shape(self) -> (int, int):
         return self._rows, self._columns
@@ -70,11 +72,11 @@ class Matrix:
                 raise AssertionError("Matrix must have same shapes.")
 
             result = []
-            for i in range(0, self._rows):
-                result_line = []
-                for j in range(0, self._columns):
-                    result_line.append(self._elements[i][j] + other._elements[i][j])
-                result.append(result_line)
+            for i in range(0, self._columns):
+                result_col = []
+                for j in range(0, self._rows):
+                    result_col.append(self._elements[j][i] + other._elements[j][i])
+                result.append(result_col)
             return Matrix(result)
 
         except AssertionError as e:
@@ -88,11 +90,11 @@ class Matrix:
                 raise AssertionError("Matrix must have same shape.")
 
             result = []
-            for i in range(0, self._rows):
-                result_line = []
-                for j in range(0, self._columns):
-                    result_line.append(self._elements[i][j] - other._elements[i][j])
-                result.append(result_line)
+            for i in range(0, self._columns):
+                result_col = []
+                for j in range(0, self._rows):
+                    result_col.append(self._elements[j][i] - other._elements[j][i])
+                result.append(result_col)
             return Matrix(result)
 
         except AssertionError as e:
@@ -104,11 +106,11 @@ class Matrix:
                 raise AssertionError("Scalar must be a number (Real or Complex)")
 
             result = []
-            for i in range(0, self._rows):
-                result_line = []
-                for j in range(0, self._columns):
-                    result_line.append(self._elements[i][j] * scalar)
-                result.append(result_line)
+            for i in range(0, self._columns):
+                result_col = []
+                for j in range(0, self._rows):
+                    result_col.append(self._elements[j][i] * scalar)
+                result.append(result_col)
             return Matrix(result)
 
         except AssertionError as e:

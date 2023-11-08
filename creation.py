@@ -67,35 +67,35 @@ def main():
     except AssertionError as e:
         print(e)
     print()
-    # Rows haven't same size
+    # Columns haven't same size
     try:
         mat = B_Matrix([[1, 2, 3], [4, 5]])
         print(mat)
     except AssertionError as e:
         print(e)
     print()
-    # Not numbers in line
+    # Not numbers in column
     try:
         mat = B_Matrix([["Oui", "Non"], [True, False]])
         print(mat)
     except AssertionError as e:
         print(e)
     print()
-    # Empty lines
+    # Empty columns
     try:
         mat = B_Matrix([[], [], []])
         print(mat)
     except AssertionError as e:
         print(e)
     print()
-    # In a line, multiple types
+    # In a columns, multiple types
     try:
         mat = B_Matrix([[2 + 1j, 2], [1, 2]])
         print(mat)
     except AssertionError as e:
         print(e)
     print()
-    # Lines haven't same types
+    # Columns haven't same types
     try:
         mat = B_Matrix([[2 + 1j, 1 - 1j], [2, 3], [1.2, 4.5]])
         print(mat)
@@ -193,28 +193,28 @@ def main():
     except AssertionError as e:
         print(e)
     print()
-    # Not numbers in line
+    # Not numbers in columns
     try:
         mat = C_Matrix([["Oui", "Non"], [True, False]])
         print(mat)
     except AssertionError as e:
         print(e)
     print()
-    # Empty lines
+    # Empty columns
     try:
         mat = C_Matrix([[], [], []])
         print(mat)
     except AssertionError as e:
         print(e)
     print()
-    # In a line, multiple types
+    # In a column, multiple types
     try:
         mat = C_Matrix([[Complex(3, 4), 2], [1, 2]])
         print(mat)
     except AssertionError as e:
         print(e)
     print()
-    # Lines haven't same types
+    # Columns haven't same types
     try:
         mat = C_Matrix([[Complex(2, 1), Complex(1, -1)], [2, 3], [1.2, 4.5]])
         print(mat)

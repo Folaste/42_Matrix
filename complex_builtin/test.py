@@ -7,12 +7,16 @@ def main():
     # except AssertionError as e:
     #     print(e)
     try:
-        a = Matrix([[1, 2, 3], [4, 5, 6]])
-        vect = a.to_vector()
-        print(a)
-        print(vect)
-        new = vect.to_matrix(3, 2)
-        print(new)
+        a = Matrix([[1, 1, 1], [1, 1, 1]])
+        b = Matrix([[1, 1, 1], [1, 1, 1]])
+
+
+        print(a, end='\n\n')
+        obj = eval(repr(a))
+
+        print(obj)
+
+        print(a - b)
     except AssertionError as e:
         print(e)
 

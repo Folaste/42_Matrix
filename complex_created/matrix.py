@@ -39,6 +39,8 @@ class Matrix:
                     and not all(isinstance(elem, Complex) for elem in test_col)):
                 raise AssertionError("All elements must be in the same type. (Real or Complex numbers)")
 
+            self._repr = elements  # Only used by __repr__()
+
             elements = [[elements[j][i] for j in range(nb_rows)] for i in range(nb_cols)]
 
             self._elements = elements
@@ -54,7 +56,7 @@ class Matrix:
         return f"{rows_str}"
 
     def __repr__(self) -> str:
-        return "Matrix({})".format(self._elements)
+        return "Matrix({})".format(self._repr)
 
     def shape(self) -> (int, int):
         return self._rows, self._columns
