@@ -2,8 +2,10 @@ class Complex:
 
     def __init__(self, *numbers) -> None:
         try:
-            if not all(isinstance(component, (int, float)) for component in numbers) and len(numbers) != 2:
-                raise AssertionError("Components must be int or float")
+            if not all(isinstance(component, (int, float)) for component in numbers):
+                raise AssertionError("Components must be int or float.")
+            if not len(numbers) == 2:
+                raise AssertionError("Constructor needs only 2 elements.")
 
             self._real = numbers[0]
             self._imaginary = numbers[1]
