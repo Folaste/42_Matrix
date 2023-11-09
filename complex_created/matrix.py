@@ -77,10 +77,10 @@ class Matrix:
                 raise AssertionError("Matrix must have same shape.")
 
             result = []
-            for i in range(0, self._rows):
+            for i in range(0, self._columns):
                 result_line = []
-                for j in range(0, self._columns):
-                    result_line.append(self._elements[i][j] + other._elements[i][j])
+                for j in range(0, self._rows):
+                    result_line.append(self._elements[j][i] + other._elements[j][i])
                 result.append(result_line)
             return Matrix(result)
 
@@ -95,10 +95,10 @@ class Matrix:
                 raise AssertionError("Matrix must have same shape.")
 
             result = []
-            for i in range(0, self._rows):
+            for i in range(0, self._columns):
                 result_line = []
-                for j in range(0, self._columns):
-                    result_line.append(self._elements[i][j] - other._elements[i][j])
+                for j in range(0, self._rows):
+                    result_line.append(self._elements[j][i] - other._elements[j][i])
                 result.append(result_line)
             return Matrix(result)
 
@@ -107,14 +107,14 @@ class Matrix:
 
     def scl(self, scalar):
         try:
-            if not isinstance(scalar, (int, float, Complex)):
+            if not isinstance(scalar, (int, float, Complex)) or isinstance(scalar, bool):
                 raise AssertionError("Scalar must be a number (Real or Complex)")
 
             result = []
-            for i in range(0, self._rows):
+            for i in range(0, self._columns):
                 result_line = []
-                for j in range(0, self._columns):
-                    result_line.append(self._elements[i][j] * scalar)
+                for j in range(0, self._rows):
+                    result_line.append(self._elements[j][i] * scalar)
                 result.append(result_line)
             return Matrix(result)
 

@@ -102,7 +102,7 @@ class Matrix:
 
     def scl(self, scalar):
         try:
-            if not isinstance(scalar, (int, float, complex)):
+            if not isinstance(scalar, (int, float, complex)) or isinstance(scalar, bool):
                 raise AssertionError("Scalar must be a number (Real or Complex)")
 
             result = []
