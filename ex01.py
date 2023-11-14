@@ -15,7 +15,7 @@ def linear_combination(u: list[Vector], coefs: list[int | float | Complex]) -> V
         ret = Vector([0 for _ in range(u[0].dim())])
 
         for i in range(len(u)):
-            ret += u[i].scl(coefs[i])
+            ret += u[i] * (coefs[i])
 
         return ret
 

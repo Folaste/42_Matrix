@@ -117,7 +117,7 @@ def vector_builtin():
     print("\x1b[32m| Real Scalar * Real Vector |\x1b[0m")
     try:
         a = B_Vector([2, 5, 7])
-        c = a.scl(3)
+        c = a * 3
         print(c)
     except AssertionError as e:
         print(e)
@@ -126,7 +126,7 @@ def vector_builtin():
     print("\x1b[32m| Complex Scalar * Real Vector |\x1b[0m")
     try:
         a = B_Vector([1, 5])
-        c = a.scl(9 + 2j)
+        c = a * (9 + 2j)
         print(c)
     except AssertionError as e:
         print(e)
@@ -135,7 +135,7 @@ def vector_builtin():
     print("\x1b[32m| Real Scalar * Complex Vector |\x1b[0m")
     try:
         a = B_Vector([1 + 2j, 5 - 3j])
-        c = a.scl(8)
+        c = a * 8
         print(c)
     except AssertionError as e:
         print(e)
@@ -144,7 +144,7 @@ def vector_builtin():
     print("\x1b[32m| Complex Scalar * Complex Vector |\x1b[0m")
     try:
         a = B_Vector([1 + 2j, 5 - 3j])
-        c = a.scl(2 + 5j)
+        c = a * (2 + 5j)
         print(c)
     except AssertionError as e:
         print(e)
@@ -153,7 +153,7 @@ def vector_builtin():
     print("\x1b[32m| Exception: Not a Number Scalar |\x1b[0m")
     try:
         a = B_Vector([1, 5, 12])
-        c = a.scl("Test")
+        c = a * "Test"
         print(c)
     except AssertionError as e:
         print(e)
@@ -271,7 +271,7 @@ def matrix_builtin():
     print("\x1b[32m| Real Scalar * Real Matrix |\x1b[0m")
     try:
         a = B_Matrix([[4, 23, 3], [1, -4, 6.1], [5, 2, -4]])
-        c = a.scl(4)
+        c = a * 4
         print(c)
     except AssertionError as e:
         print(e)
@@ -280,7 +280,7 @@ def matrix_builtin():
     print("\x1b[32m| Complex Scalar * Real Matrix |\x1b[0m")
     try:
         a = B_Matrix([[6, 3, -5], [1, -4, 6], [5, 0, -4]])
-        c = a.scl(3 + 2j)
+        c = a * (3 + 2j)
         print(c)
     except AssertionError as e:
         print(e)
@@ -289,7 +289,7 @@ def matrix_builtin():
     print("\x1b[32m| Real Scalar * Complex Matrix |\x1b[0m")
     try:
         a = B_Matrix([[4 + 2j, 3 - 1j], [-4 + 6j, 5 - 2j]])
-        c = a.scl(4)
+        c = a * 4
         print(c)
     except AssertionError as e:
         print(e)
@@ -298,7 +298,7 @@ def matrix_builtin():
     print("\x1b[32m| Complex Scalar * Complex Matrix |\x1b[0m")
     try:
         a = B_Matrix([[4 + 2j, 3 - 1j], [-4 + 6j, 5 - 2j]])
-        c = a.scl(1 + 2j)
+        c = a * (1 + 2j)
         print(c)
     except AssertionError as e:
         print(e)
@@ -307,7 +307,7 @@ def matrix_builtin():
     print("\x1b[32m| Exception: Not a number scalar |\x1b[0m")
     try:
         a = B_Matrix([[4, 1], [-4, 5]])
-        c = a.scl(True)
+        c = a * True
         print(c)
     except AssertionError as e:
         print(e)
@@ -425,7 +425,7 @@ def vector_created():
     print("\x1b[32m| Real Scalar * Real Vector |\x1b[0m")
     try:
         a = C_Vector([2, 5, 7])
-        c = a.scl(3)
+        c = a * 3
         print(c)
     except AssertionError as e:
         print(e)
@@ -434,7 +434,7 @@ def vector_created():
     print("\x1b[32m| Complex Scalar * Real Vector |\x1b[0m")
     try:
         a = C_Vector([1, 5])
-        c = a.scl(Complex(9, 2))
+        c = a * Complex(9, 2)
         print(c)
     except AssertionError as e:
         print(e)
@@ -443,7 +443,7 @@ def vector_created():
     print("\x1b[32m| Real Scalar * Complex Vector |\x1b[0m")
     try:
         a = C_Vector([Complex(1, 2), Complex(5, -3)])
-        c = a.scl(8)
+        c = a * 8
         print(c)
     except AssertionError as e:
         print(e)
@@ -452,7 +452,7 @@ def vector_created():
     print("\x1b[32m| Complex Scalar * Complex Vector |\x1b[0m")
     try:
         a = C_Vector([Complex(1, 2), Complex(5, -3)])
-        c = a.scl(Complex(2, 5))
+        c = a * Complex(2, 5)
         print(c)
     except AssertionError as e:
         print(e)
@@ -461,7 +461,7 @@ def vector_created():
     print("\x1b[32m| Exception: Not a Number Scalar |\x1b[0m")
     try:
         a = C_Vector([1, 5, 12])
-        c = a.scl("Test")
+        c = a * "Test"
         print(c)
     except AssertionError as e:
         print(e)
@@ -590,7 +590,7 @@ def matrix_created():
     print("\x1b[32m| Real Scalar * Real Matrix |\x1b[0m")
     try:
         a = C_Matrix([[4, 23, 3], [1, -4, 6.1], [5, 2, -4]])
-        c = a.scl(4)
+        c = a * 4
         print(c)
     except AssertionError as e:
         print(e)
@@ -599,7 +599,7 @@ def matrix_created():
     print("\x1b[32m| Complex Scalar * Real Matrix |\x1b[0m")
     try:
         a = C_Matrix([[6, 3, -5], [1, -4, 6], [5, 0, -4]])
-        c = a.scl(Complex(3, 2))
+        c = a * Complex(3, 2)
         print(c)
     except AssertionError as e:
         print(e)
@@ -609,7 +609,7 @@ def matrix_created():
     try:
         a = C_Matrix([[Complex(4, 2), Complex(3, -1)],
                       [Complex(-4, 6), Complex(5, -2)]])
-        c = a.scl(4)
+        c = a * 4
         print(c)
     except AssertionError as e:
         print(e)
@@ -619,7 +619,7 @@ def matrix_created():
     try:
         a = C_Matrix([[Complex(4, 2), Complex(3, -1)],
                       [Complex(-4, 6), Complex(5, -2)]])
-        c = a.scl(Complex(1, 2))
+        c = a * Complex(1, 2)
         print(c)
     except AssertionError as e:
         print(e)
@@ -628,7 +628,7 @@ def matrix_created():
     print("\x1b[32m| Exception: Not a number scalar |\x1b[0m")
     try:
         a = C_Matrix([[4, 1], [-4, 5]])
-        c = a.scl(True)
+        c = a * True
         print(c)
     except AssertionError as e:
         print(e)
@@ -636,8 +636,8 @@ def matrix_created():
 
 
 if __name__ == "__main__":
-    # vector_builtin()
-    # matrix_builtin()
-    # print()
+    vector_builtin()
+    matrix_builtin()
+    print()
     vector_created()
     matrix_created()

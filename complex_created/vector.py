@@ -72,7 +72,7 @@ class Vector:
         except AssertionError as e:
             print(e)
 
-    def scl(self, scalar):
+    def __mul__(self, scalar):
         try:
             if not isinstance(scalar, (int, float, Complex)):
                 raise AssertionError("Scalar must be a number (Real or Complex).")

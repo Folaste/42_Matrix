@@ -68,7 +68,7 @@ class Vector:
         except AssertionError as e:
             print(e)
 
-    def scl(self, scalar):
+    def __mul__(self, scalar):
         try:
             if not isinstance(scalar, (int, float, complex)):
                 raise AssertionError("Vector must be multiply by a number (Real or Complex)")
