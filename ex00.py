@@ -1,3 +1,8 @@
+"""
+    Exercise 00: Add, Subtract and Scale
+"""
+
+
 from complex_builtin.matrix import Matrix as B_Matrix
 from complex_builtin.vector import Vector as B_Vector
 

@@ -1,3 +1,8 @@
+"""
+    Exercise 02: Linear Interpolation
+"""
+
+
 from complex_created.complex import Complex
 from complex_created.matrix import Matrix
 from complex_created.vector import Vector

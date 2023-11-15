@@ -1,3 +1,8 @@
+"""
+    Class Matrix with built-in complex type.
+"""
+
+
 class Matrix:
 
     def __init__(self, *elements) -> None:
@@ -55,12 +60,15 @@ class Matrix:
         return "Matrix({})".format(self._repr)
 
     def shape(self) -> (int, int):
+        """ Returns size of the matrix. """
         return self._rows, self._columns
 
     def is_square(self) -> bool:
+        """ Returns True if the matrix is square, False otherwise. """
         return self._rows == self._columns
 
     def to_vector(self):
+        """ Create a vector with values of the matrix. """
         from vector import Vector
         return Vector([elem for row in self._elements for elem in row])
 

@@ -1,3 +1,8 @@
+"""
+    Class Vector with built-in complex type.
+"""
+
+
 class Vector:
 
     def __init__(self, *elements) -> None:
@@ -32,9 +37,11 @@ class Vector:
         return f"Vector({self._elements})"
 
     def dim(self) -> int:
+        """ Returns length of the vector. """
         return self._dimension
 
     def to_matrix(self, rows, columns):
+        """ Create a matrix with values of the vector. """
         from matrix import Matrix
         try:
             if self._dimension != rows * columns:
@@ -80,6 +87,7 @@ class Vector:
 
     # ex03
     def dot(self, other) -> int | float | complex:
+        """ Returns dot product with this vector and another. """
         try:
             if not isinstance(other, Vector) or len(self._elements) != len(other._elements):
                 raise AssertionError("Parameter must be a same length vector.")

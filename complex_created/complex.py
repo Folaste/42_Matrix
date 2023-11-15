@@ -1,3 +1,8 @@
+"""
+    Complex class using to re-create complex type.
+"""
+
+
 class Complex:
 
     def __init__(self, *numbers) -> None:
