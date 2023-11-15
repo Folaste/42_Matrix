@@ -77,3 +77,18 @@ class Vector:
 
         except AssertionError as e:
             print(e)
+
+    # ex03
+    def dot(self, other) -> int | float | complex:
+        try:
+            if not isinstance(other, Vector) or len(self._elements) != len(other._elements):
+                raise AssertionError("Parameter must be a same length vector.")
+
+            result = 0
+            for i in range(len(self._elements)):
+                result += self._elements[i] * other._elements[i]
+
+            return result
+
+        except AssertionError as e:
+            print(e)
