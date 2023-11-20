@@ -3,6 +3,9 @@
 """
 
 
+from ft_math import ft_sqrt, ft_pow, ft_abs
+
+
 class Vector:
 
     def __init__(self, *elements) -> None:
@@ -97,6 +100,34 @@ class Vector:
                 result += self._elements[i] * other._elements[i]
 
             return result
+
+        except AssertionError as e:
+            print(e)
+
+    # ex04
+    def norm_1(self) -> float:
+        """ Returns Manhattan norm for the vector. """
+        try:
+            result = sum([ft_abs(elem, 'manhattan') for elem in self._elements])
+            return result
+
+        except AssertionError as e:
+            print(e)
+
+    def norm(self) -> float:
+        """ Returns Euclidean norm for the vector. """
+        try:
+            result = sum(ft_pow(elem, 2) for elem in self._elements)
+            return ft_sqrt(result)
+
+        except AssertionError as e:
+            print(e)
+
+    def norm_inf(self) -> float:
+        """ Returns supremum norm for the vector. """
+        try:
+            val_abs = [ft_abs(elem, 'manhattan') for elem in self._elements]
+            return max(val_abs)
 
         except AssertionError as e:
             print(e)

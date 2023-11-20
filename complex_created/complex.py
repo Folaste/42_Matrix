@@ -87,3 +87,11 @@ class Complex:
                                         other._real * other._real + other._imaginary * other._imaginary))
         elif isinstance(other, (int, float)):
             return Complex(self._real / other, self._imaginary / other)
+
+    @property
+    def imaginary(self):
+        return self._imaginary
+
+    @property
+    def real(self):
+        return self._real

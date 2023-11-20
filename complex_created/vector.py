@@ -4,6 +4,7 @@
 
 
 from complex_created.complex import Complex
+from ft_math import ft_abs, ft_pow, ft_sqrt
 
 
 class Vector:
@@ -101,6 +102,34 @@ class Vector:
                 result += self._elements[i] * other._elements[i]
 
             return result
+
+        except AssertionError as e:
+            print(e)
+
+    # ex04
+    def norm_1(self) -> float:
+        """ Returns Manhattan norm for the vector. """
+        try:
+            result = sum([ft_abs(elem, 'manhattan') for elem in self._elements])
+            return float(result)
+
+        except AssertionError as e:
+            print(e)
+
+    def norm(self) -> float:
+        """ Returns Euclidean norm for the vector. """
+        try:
+            result = sum(ft_pow(ft_abs(elem), 2) for elem in self._elements)
+            return ft_sqrt(result)
+
+        except AssertionError as e:
+            print(e)
+
+    def norm_inf(self) -> float:
+        """ Returns supremum norm for the vector. """
+        try:
+            val_abs = [ft_abs(elem, 'manhattan') for elem in self._elements]
+            return float(max(val_abs))
 
         except AssertionError as e:
             print(e)
