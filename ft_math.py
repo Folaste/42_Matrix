@@ -6,6 +6,18 @@
 from complex_created.complex import Complex
 
 
+def Re(z: Complex | float | int) -> float:
+    if not isinstance(z, Complex):
+        return z
+    return z.real
+
+
+def Im(z: Complex | int | float) -> float:
+    if not isinstance(z, Complex):
+        return z
+    return z.imaginary
+
+
 def ft_abs(number: int | float | Complex, method='euclid') -> int | float:
     """ Returns absolute value of number """
     if isinstance(number, (int, float)):
@@ -31,21 +43,19 @@ def ft_pow(x: float | int, n: int) -> float:
         return x * ft_pow(x, n - 1)
 
 
-def ft_sqrt(number: int | float, epsilon=1e-10, max_iterations=1000) -> int | float:
+def ft_sqrt(number: int | float, epsilon=1e-14, max_iterations=2000) -> int | float:
     """ Returns an approximation of square root, using Newton-Raphson method. """
     if not isinstance(number, (int, float)) or number < 0:
         raise AssertionError("Value must be a positive number.")
+    if number == 0:
+        return 0.0
 
     x = 1.
 
     for _ in range(max_iterations):
-        x = 0.5 * (x + number / x)
+        x = (x + number / x) / 2
 
         if (x * x - number) < epsilon:
             return x
 
     raise AssertionError("Method didn't converge enough.")
-
-
-if __name__ == "__main__":
-    print(ft_abs(Complex(3, 4), 'manhattan'))
