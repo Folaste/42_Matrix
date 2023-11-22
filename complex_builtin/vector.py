@@ -28,6 +28,14 @@ class Vector:
             print(e)
             raise AssertionError("Error while creating Vector")
 
+    def __getitem__(self, index):
+        try:
+            if index < self._dimension:
+                return self._elements[index]
+            raise AssertionError("Index is above dimension of the vector.")
+        except AssertionError as e:
+            print(e)
+
     def __str__(self) -> str:
         max_width = max(len(str(element)) for element in self._elements)
         string = ""
