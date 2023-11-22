@@ -78,31 +78,29 @@ class Vector:
         except AssertionError as e:
             print(e)
 
-    def __mul__(self, scalar):
+    def __mul__(self, other):
         try:
-            if not isinstance(scalar, (int, float, complex)):
-                raise AssertionError("Vector must be multiply by a number (Real or Complex)")
+            if isinstance(other, (int, float, complex)):  # ex00
+                return Vector([self._elements[i] * other for i in range(0, self._dimension)])
 
-            return Vector([self._elements[i] * scalar for i in range(0, self._dimension)])
+            elif isinstance(other, Vector):  # ex03
+                if self._dimension != other._dimension:
+                    raise ValueError("Vector must have same dimension.")
+                result = 0
+                for i in range(self._dimension):
+                    result += self._elements[i] * other._elements[i]
+                return result
+
+            else:
+                raise AssertionError("Parameter must be a scalar number (Real or Complex), or a Vector")
 
         except AssertionError as e:
             print(e)
-
-    # ex03
-    def dot(self, other) -> int | float | complex:
-        """ Returns dot product with this vector and another. """
-        try:
-            if not isinstance(other, Vector) or len(self._elements) != len(other._elements):
-                raise AssertionError("Parameter must be a same length vector.")
-
-            result = 0
-            for i in range(len(self._elements)):
-                result += self._elements[i] * other._elements[i]
-
-            return result
-
-        except AssertionError as e:
+        except ValueError as e:
             print(e)
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
 
     # ex04
     def norm_1(self) -> float:

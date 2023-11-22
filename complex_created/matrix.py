@@ -73,7 +73,7 @@ class Matrix:
 
     def to_vector(self):
         """ Create a vector with values of the matrix. """
-        from vector import Vector
+        from complex_created.vector import Vector
         return Vector([elem for row in self._elements for elem in row])
 
     # ex00
@@ -113,18 +113,40 @@ class Matrix:
         except AssertionError as e:
             print(e)
 
-    def __mul__(self, scalar):
+    def __mul__(self, other):
+        from complex_created.vector import Vector
         try:
-            if not isinstance(scalar, (int, float, Complex)) or isinstance(scalar, bool):
-                raise AssertionError("Scalar must be a number (Real or Complex)")
+            if isinstance(other, (int, float, Complex)):  # ex00
+                result = []
+                for i in range(0, self._columns):
+                    result_line = []
+                    for j in range(0, self._rows):
+                        result_line.append(self._elements[j][i] * other)
+                    result.append(result_line)
+                return Matrix(result)
 
-            result = []
-            for i in range(0, self._columns):
-                result_line = []
-                for j in range(0, self._rows):
-                    result_line.append(self._elements[j][i] * scalar)
-                result.append(result_line)
-            return Matrix(result)
+            elif isinstance(other, Vector):  # ex07
+                if self._columns == other.dim():
+                    result = []
+                    for i in range(self._rows):
+                        element = 0
+                        for j in range(other.dim()):
+                            element += self._elements[i][j] * other[j]
+                        result.append(element)
+                    return Vector(result)
+                else:
+                    raise ValueError()
 
+            elif isinstance(other, Matrix):  # ex07
+                return Matrix([[]])
+
+            else:
+                raise AssertionError("Parameter must be a scalar (Real or Complex), a Vector or a Matrix.")
+
+        except ValueError:
+            print("The dimension of the vector must be equal to the number of columns in the matrix.")
         except AssertionError as e:
             print(e)
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
