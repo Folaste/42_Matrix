@@ -135,16 +135,30 @@ class Matrix:
                         result.append(element)
                     return Vector(result)
                 else:
-                    raise ValueError()
+                    raise ValueError("The dimension of the vector must be equal "
+                                     "to the number of columns in the matrix.")
 
             elif isinstance(other, Matrix):  # ex07
-                return Matrix([[]])
+                if self._columns == other._rows:
+                    result = []
+                    for j in range(other._columns):
+                        result_line = []
+                        for i in range(self._rows):
+                            element = 0
+                            for k in range(self._columns):
+                                element += self._elements[i][k] * other._elements[k][j]
+                            result_line.append(element)
+                        result.append(result_line)
+                    return Matrix(result)
+                else:
+                    raise ValueError("The number of columns in the first matrix must be equal "
+                                     "to the number of rows in the second matrix.")
 
             else:
                 raise AssertionError("Parameter must be a scalar (Real or Complex), a Vector or a Matrix.")
 
-        except ValueError:
-            print("The dimension of the vector must be equal to the number of columns in the matrix.")
+        except ValueError as e:
+            print(e)
         except AssertionError as e:
             print(e)
 
