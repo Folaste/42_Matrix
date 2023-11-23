@@ -176,3 +176,9 @@ class Matrix:
 
         except ValueError as e:
             print(e)
+
+    # ex09
+    def transpose(self):
+        """ Returns the transpose of the matrix. """
+        # Actually, constructor already transpose the matrix, to print in column-major order.
+        return Matrix(self._elements)
