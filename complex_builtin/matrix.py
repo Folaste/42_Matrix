@@ -159,3 +159,15 @@ class Matrix:
 
     def __rmul__(self, other):
         return self.__mul__(other)
+
+    # ex08
+    def trace(self):
+        """ Returns the trace of the matrix. """
+        try:
+            if self.is_square():
+                return sum([self._elements[i][i] for i in range(self._rows)])
+            else:
+                raise ValueError("Matrix must be square.")
+
+        except ValueError as e:
+            print(e)
