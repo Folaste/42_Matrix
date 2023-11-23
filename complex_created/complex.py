@@ -35,7 +35,7 @@ class Complex:
     def __iadd__(self, other):
         if isinstance(other, Complex):
             self._real += other._real
-            self._imaginary = other._imaginary
+            self._imaginary += other._imaginary
         elif isinstance(other, (int, float)):
             self._real += other
         return self
