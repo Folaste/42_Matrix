@@ -12,7 +12,7 @@ def cosine(u: Vector, v: Vector) -> float:
     try:
         if u.dim() != v.dim() or u.norm() == 0 or v.norm() == 0:
             raise AssertionError("This expression cannot be calculated")
-        return Re(u.dot(v) / (u.norm() * v.norm()))
+        return Re((u * v) / (u.norm() * v.norm()))
 
     except AssertionError as e:
         print(e)
