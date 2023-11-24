@@ -46,7 +46,7 @@ class Matrix:
 
             self._repr = elements  # Only used by __repr__()
 
-            elements = [[elements[j][i] for j in range(nb_rows)] for i in range(nb_cols)]
+            # elements = [[elements[j][i] for j in range(nb_rows)] for i in range(nb_cols)]
 
             self._elements = elements
             self._rows = nb_cols
@@ -57,8 +57,10 @@ class Matrix:
             raise AssertionError("Error while creating Matrix")
 
     def __str__(self) -> str:
-        rows_str = "\n".join(f"[{', '.join(str(elem) for elem in row)}]" for row in self._elements)
-        return f"{rows_str}"
+        # print(self.shape())
+        elements = [[self._elements[j][i] for j in range(self._columns)] for i in range(self._rows)]
+        rows_str = "\n".join(f"[{', '.join(str(elem) for elem in row)}]" for row in elements)
+        return f"{rows_str}\n"
 
     def __repr__(self) -> str:
         return "Matrix({})".format(self._repr)
@@ -88,7 +90,7 @@ class Matrix:
             for i in range(0, self._columns):
                 result_line = []
                 for j in range(0, self._rows):
-                    result_line.append(self._elements[j][i] + other._elements[j][i])
+                    result_line.append(self._elements[i][j] + other._elements[i][j])
                 result.append(result_line)
             return Matrix(result)
 
@@ -106,7 +108,7 @@ class Matrix:
             for i in range(0, self._columns):
                 result_line = []
                 for j in range(0, self._rows):
-                    result_line.append(self._elements[j][i] - other._elements[j][i])
+                    result_line.append(self._elements[i][j] - other._elements[i][j])
                 result.append(result_line)
             return Matrix(result)
 
@@ -121,7 +123,7 @@ class Matrix:
                 for i in range(0, self._columns):
                     result_line = []
                     for j in range(0, self._rows):
-                        result_line.append(self._elements[j][i] * other)
+                        result_line.append(self._elements[i][j] * other)
                     result.append(result_line)
                 return Matrix(result)
 
@@ -131,7 +133,7 @@ class Matrix:
                     for i in range(self._rows):
                         element = 0
                         for j in range(other.dim()):
-                            element += self._elements[i][j] * other[j]
+                            element += self._elements[j][i] * other[j]
                         result.append(element)
                     return Vector(result)
                 else:
@@ -146,7 +148,7 @@ class Matrix:
                         for i in range(self._rows):
                             element = 0
                             for k in range(self._columns):
-                                element += self._elements[i][k] * other._elements[k][j]
+                                element += self._elements[k][i] * other._elements[j][k]
                             result_line.append(element)
                         result.append(result_line)
                     return Matrix(result)
@@ -181,4 +183,5 @@ class Matrix:
     def transpose(self):
         """ Returns the transpose of the matrix. """
         # Actually, constructor already transpose the matrix, to print in column-major order.
-        return Matrix(self._elements)
+        return Matrix([[self._elements[j][i] for j in range(self._columns)] for i in range(self._rows)]
+)
