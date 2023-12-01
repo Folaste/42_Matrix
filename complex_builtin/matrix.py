@@ -43,8 +43,6 @@ class Matrix:
 
             self._repr = elements  # Only used by __repr__()
 
-            # elements = [[elements[j][i] for j in range(nb_rows)] for i in range(nb_cols)]
-
             self._elements = elements
             self._rows = nb_cols
             self._columns = nb_rows
@@ -53,8 +51,8 @@ class Matrix:
             print(e)
             raise AssertionError("Error while creating Matrix")
 
+    # utils
     def __str__(self) -> str:
-        # print(self.shape())
         elements = [[self._elements[j][i] for j in range(self._columns)] for i in range(self._rows)]
         rows_str = "\n".join(f"[{', '.join(str(elem) for elem in row)}]" for row in elements)
         return f"{rows_str}\n"
@@ -74,6 +72,11 @@ class Matrix:
         """ Create a vector with values of the matrix. """
         from complex_builtin.vector import Vector
         return Vector([elem for row in self._elements for elem in row])
+
+    def submatrix(self, i, j):
+        """ Returns the sub-matrix without the i-th row and the j-th column. """
+        return Matrix([[self._elements[k][l] for l in range(self._columns) if l != i]
+                       for k in range(self._rows) if k != j])
 
     # ex00
     def __add__(self, other):
@@ -180,3 +183,29 @@ class Matrix:
     def transpose(self):
         """ Returns the transpose of the matrix. """
         return Matrix([[self._elements[j][i] for j in range(self._columns)] for i in range(self._rows)])
+
+    # ex11
+    def determinant(self):
+        """ Returns the determinant of the matrix."""
+        try:
+            if self.is_square():
+                if self._rows == 1:
+                    return self._elements[0][0]
+                elif self._rows == 2:
+                    return self._elements[0][0] * self._elements[1][1] - self._elements[0][1] * self._elements[1][0]
+                elif self._rows == 3:
+                    return self._elements[0][0] * self.submatrix(0, 0).determinant() \
+                        - self._elements[0][1] * self.submatrix(1, 0).determinant() \
+                        + self._elements[0][2] * self.submatrix(2, 0).determinant()
+                elif self._rows == 4:
+                    return self._elements[0][0] * self.submatrix(0, 0).determinant() \
+                        - self._elements[0][1] * self.submatrix(1, 0).determinant() \
+                        + self._elements[0][2] * self.submatrix(2, 0).determinant() \
+                        - self._elements[0][3] * self.submatrix(3, 0).determinant()
+                else:
+                    raise ValueError("Matrix must be smaller than 5x5.")
+            else:
+                raise ValueError("Matrix must be square.")
+
+        except ValueError as e:
+            print(e)

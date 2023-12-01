@@ -29,6 +29,7 @@ class Vector:
             print(e)
             raise AssertionError("Error while creating Vector")
 
+    # utils
     def __getitem__(self, index):
         try:
             if index < self._dimension:
