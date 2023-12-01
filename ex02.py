@@ -3,9 +3,9 @@
 """
 
 
-from complex_created.complex import Complex
-from complex_created.matrix import Matrix
-from complex_created.vector import Vector
+from complex import Complex
+from matrix import Matrix
+from vector import Vector
 
 
 def lerp(u, v, t) -> int | float | Complex | Matrix | Vector:

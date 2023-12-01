@@ -2,8 +2,8 @@
     Exercise 04: Norm
 """
 
-from complex_created.complex import Complex
-from complex_created.vector import Vector
+from complex import Complex
+from vector import Vector
 
 
 def main():

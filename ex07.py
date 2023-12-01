@@ -2,9 +2,9 @@
     Exercise 07: Linear Map, Matrix multiplication
 """
 
-from complex_created.complex import Complex
-from complex_created.matrix import Matrix
-from complex_created.vector import Vector
+from complex import Complex
+from matrix import Matrix
+from vector import Vector
 
 
 def main():

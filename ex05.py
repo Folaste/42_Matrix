@@ -2,8 +2,8 @@
     Exercise 05: Cosine
 """
 
-from complex_created.complex import Complex
-from complex_created.vector import Vector
+from complex import Complex
+from vector import Vector
 from ft_math import Re
 
 

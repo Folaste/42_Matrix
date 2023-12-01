@@ -3,7 +3,7 @@
 """
 
 
-from complex_created.complex import Complex
+from complex import Complex
 
 
 def Re(z: Complex | float | int) -> float:

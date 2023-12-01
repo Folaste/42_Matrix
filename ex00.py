@@ -6,9 +6,9 @@
 from complex_builtin.matrix import Matrix as B_Matrix
 from complex_builtin.vector import Vector as B_Vector
 
-from complex_created.complex import Complex
-from complex_created.matrix import Matrix as C_Matrix
-from complex_created.vector import Vector as C_Vector
+from complex import Complex
+from matrix import Matrix as C_Matrix
+from vector import Vector as C_Vector
 
 
 def vector_builtin():

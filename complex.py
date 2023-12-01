@@ -82,11 +82,18 @@ class Complex:
     def __truediv__(self, other):
         if isinstance(other, Complex):
             return Complex((self._real * other._real + self._imaginary * other._imaginary) / (
-                                        other._real * other._real + other._imaginary * other._imaginary),
+                    other._real * other._real + other._imaginary * other._imaginary),
                            (other._real * self._imaginary - self._real * other._imaginary) / (
-                                        other._real * other._real + other._imaginary * other._imaginary))
+                                   other._real * other._real + other._imaginary * other._imaginary))
         elif isinstance(other, (int, float)):
             return Complex(self._real / other, self._imaginary / other)
+
+    def __rtruediv__(self, other):
+        if isinstance(other, Complex):
+            return other.__truediv__(self)
+        elif isinstance(other, (int, float)):
+            other = Complex(other, 0)
+            return other.__truediv__(self)
 
     @property
     def imaginary(self):

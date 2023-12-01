@@ -17,4 +17,5 @@ For each exercise, the 4 classes are imported with the following names B_[Class]
 File `creation.py` shows how to create Vectors and Matrix and all exceptions at creation of objects.
 Furthermore, there is one file per exercise, from `ex00.py` to `ex<n>.py`.
 
-Finally, only complex_created classes will be used for exercises, complex_builtin will be used for checking.
+Only complex_created classes will be used for exercises, complex_builtin will be used for checking.
+In final version, complex_builtin is removed for import issues.

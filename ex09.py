@@ -2,8 +2,8 @@
     Exercise 09: Transpose
 """
 
-from complex_created.complex import Complex
-from complex_created.matrix import Matrix
+from complex import Complex
+from matrix import Matrix
 
 
 def main():

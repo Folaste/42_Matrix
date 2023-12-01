@@ -2,7 +2,7 @@
     Class Matrix using my type complex (Class Complex in directory)
 """
 
-from complex_created.complex import Complex
+from complex import Complex
 
 
 class Matrix:
@@ -74,7 +74,7 @@ class Matrix:
 
     def to_vector(self):
         """ Create a vector with values of the matrix. """
-        from complex_created.vector import Vector
+        from vector import Vector
         return Vector([elem for row in self._elements for elem in row])
 
     def submatrix(self, i, j):
@@ -120,7 +120,7 @@ class Matrix:
             print(e)
 
     def __mul__(self, other):
-        from complex_created.vector import Vector
+        from vector import Vector
         try:
             if isinstance(other, (int, float, Complex)):  # ex00
                 result = []
@@ -213,3 +213,56 @@ class Matrix:
 
         except ValueError as e:
             print(e)
+
+    # ex12
+    def inverse(self):
+        """ Returns the inverse of the matrix. """
+        from ft_math import ft_pow
+        try:
+            if self.is_square():
+                det = self.determinant()
+                if det == 0:
+                    raise ValueError("Matrix is not invertible.")
+                else:
+                    return Matrix([
+                        [ft_pow(-1, i + j) * self.submatrix(j, i).determinant()
+                         for j in range(self._rows)]
+                        for i in range(self._columns)]).transpose() * (1 / self.determinant())
+            else:
+                raise ValueError("Matrix must be square.")
+
+        except ValueError as e:
+            print(e)
+
+        #             if self._rows == 1:
+        #                 return Matrix([[1 / det]])
+        #             elif self._rows == 2:
+        #                 return Matrix([[self._elements[1][1] / det, -self._elements[0][1] / det],
+        #                                [-self._elements[1][0] / det, self._elements[0][0] / det]])
+        #             elif self._rows == 3:
+        #                 return Matrix([[self.submatrix(0, 0).determinant() / det,
+        #                                 -self.submatrix(0, 1).determinant() / det,
+        #                                 self.submatrix(0, 2).determinant() / det],
+        #                                [-self.submatrix(1, 0).determinant() / det,
+        #                                 self.submatrix(1, 1).determinant() / det,
+        #                                 -self.submatrix(1, 2).determinant() / det],
+        #                                [self.submatrix(2, 0).determinant() / det,
+        #                                 -self.submatrix(2, 1).determinant() / det,
+        #                                 self.submatrix(2, 2).determinant() / det]])
+        #             elif self._rows == 4:
+        #                 return Matrix([[self.submatrix(0, 0).determinant() / det,
+        #                                 -self.submatrix(0, 1).determinant() / det,
+        #                                 self.submatrix(0, 2).determinant() / det,
+        #                                 -self.submatrix(0, 3).determinant() / det],
+        #                                [-self.submatrix(1, 0).determinant() / det,
+        #                                 self.submatrix(1, 1).determinant() / det,
+        #                                 -self.submatrix(1, 2).determinant() / det,
+        #                                 self.submatrix(1, 3).determinant() / det],
+        #                                [self.submatrix(2, 0).determinant() / det,
+        #                                 -self.submatrix(2, 1).determinant() / det,
+        #                                 self.submatrix(2, 2).determinant() / det,
+        #                                 -self.submatrix(2, 3).determinant() / det],
+        #                                [-self.submatrix(3, 0).determinant() / det,
+        #                                 self.submatrix(3, 1).determinant() / det,
+        #                                 -self.submatrix(3, 2).determinant() / det,
+        #                                 self.submatrix(3, 3).determinant() / det]])

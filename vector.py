@@ -3,7 +3,7 @@
 """
 
 
-from complex_created.complex import Complex
+from complex import Complex
 from ft_math import ft_abs, ft_pow, ft_sqrt
 
 
