@@ -184,6 +184,39 @@ class Matrix:
         """ Returns the transpose of the matrix. """
         return Matrix([[self._elements[j][i] for j in range(self._columns)] for i in range(self._rows)])
 
+    # ex10
+    def row_echelon(self):
+        """ Returns the row echelon form of the matrix. """
+        # Apply transpose to the matrix to make it row-major order.
+        ref = [[self._elements[j][i] for j in range(self._columns)] for i in range(self._rows)]
+        r = 0
+        # Step 1: Begin with the first non-zero column. This is the pivot column.
+        for j in range(self._columns):
+            if not all(ref[i][j] == 0 for i in range(self._rows)):
+                # Step 2: Make all entries below the pivot zero by using row operations. This is called the pivot row.
+                # If there is no pivot row, then interchange rows to create one.
+                i = r
+                while i < self._rows and ref[i][j] == 0:
+                    i += 1
+                if i < self._rows:
+                    ref[r], ref[i] = ref[i], ref[r]
+                else:
+                    continue
+                # Step 3: Make all entries in the pivot column zero except for the pivot entry.
+                for i in range(self._rows):
+                    if ref[i][j] != 0 and i != r:
+                        ref[i] = [ref[i][k] - ref[r][k] * ref[i][j] / ref[r][j] for k in range(self._columns)]
+                # Step 4: Make the pivot entry one by dividing the pivot row by the pivot entry.
+                ref[r] = [ref[r][k] / ref[r][j] for k in range(self._columns)]
+                ref[r] = [0. if x == -0. else x for x in ref[r]]
+                r += 1
+                if r == self._rows:
+                    break
+            # Step 5: Repeat steps 1 through 4 on the sub-matrix that is below and to the right of the pivot
+        # Apply transpose to the matrix to make it column-major order.
+        ref = [[ref[j][i] for j in range(self._rows)] for i in range(self._columns)]
+        return Matrix(ref)
+
     # ex11
     def determinant(self):
         """ Returns the determinant of the matrix."""

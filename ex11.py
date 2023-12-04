@@ -7,9 +7,6 @@ from complex import Complex
 
 
 def main():
-    # a = Matrix([])
-    # print(a)
-    # print(a.determinant())
     a = Matrix([[1, -1], [-1, 1]])
     print(a)
     print(a.determinant(), end="\n\n")
@@ -35,6 +32,10 @@ def main():
 
     # Exceptions
     a = Matrix([[1, 2], [3, 4], [5, 6]])
+    print(a)
+    print(a.determinant(), end="\n\n")
+
+    a = Matrix([[1, 1, 1, 1, 1], [2, 2, 2, 2, 2], [3, 3, 3, 3, 3], [4, 4, 4, 4, 4], [5, 5, 5, 5, 5]])
     print(a)
     print(a.determinant())
 
