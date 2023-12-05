@@ -266,3 +266,17 @@ class Matrix:
 
         except ValueError as e:
             print(e)
+
+    # ex13
+    def rank(self):
+        """ Returns the rank of the matrix. """
+        ref = self.row_echelon()
+        rank = 0
+        for i in range(self._rows):
+            if not all(ref.elements[j][i] == 0 for j in range(self._columns)):
+                rank += 1
+        return rank
+
+    @property
+    def elements(self):
+        return self._elements
