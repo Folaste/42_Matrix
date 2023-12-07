@@ -79,8 +79,8 @@ class Matrix:
 
     def submatrix(self, i, j):
         """ Returns the sub-matrix without the i-th row and the j-th column. """
-        return Matrix([[self._elements[k][l] for l in range(self._columns) if l != i]
-                       for k in range(self._rows) if k != j])
+        return Matrix([[self._elements[b][a] for a in range(self._columns) if a != i]
+                       for b in range(self._rows) if b != j])
 
     # ex00
     def __add__(self, other):

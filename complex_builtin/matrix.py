@@ -75,8 +75,8 @@ class Matrix:
 
     def submatrix(self, i, j):
         """ Returns the sub-matrix without the i-th row and the j-th column. """
-        return Matrix([[self._elements[k][l] for l in range(self._columns) if l != i]
-                       for k in range(self._rows) if k != j])
+        return Matrix([[self._elements[b][a] for a in range(self._columns) if a != i]
+                       for b in range(self._rows) if b != j])
 
     # ex00
     def __add__(self, other):
@@ -242,3 +242,37 @@ class Matrix:
 
         except ValueError as e:
             print(e)
+
+    # ex12
+    def inverse(self):
+        """ Returns the inverse of the matrix. """
+        from ft_math import ft_pow
+        try:
+            if self.is_square():
+                det = self.determinant()
+                if det == 0:
+                    raise ValueError("Matrix is not invertible.")
+                else:
+                    return Matrix([
+                        [ft_pow(-1, i + j) * self.submatrix(j, i).determinant()
+                         for j in range(self._rows)]
+                        for i in range(self._columns)]).transpose() * (1 / self.determinant())
+            else:
+                raise ValueError("Matrix must be square.")
+
+        except ValueError as e:
+            print(e)
+
+    # ex13
+    def rank(self):
+        """ Returns the rank of the matrix. """
+        ref = self.row_echelon()
+        rank = 0
+        for i in range(self._rows):
+            if not all(ref.elements[j][i] == 0 for j in range(self._columns)):
+                rank += 1
+        return rank
+
+    @property
+    def elements(self):
+        return self._elements
