@@ -2,7 +2,6 @@
     Exercise 04: Norm
 """
 
-from complex import Complex
 from vector import Vector
 
 
@@ -14,9 +13,6 @@ def main():
     print(f"{u.norm_1()}, {u.norm()}, {u.norm_inf()}")
 
     u = Vector([-1., -2.])
-    print(f"{u.norm_1()}, {u.norm()}, {u.norm_inf()}")
-
-    u = Vector([Complex(2, 1), Complex(4, 3), Complex(-3, -2)])
     print(f"{u.norm_1()}, {u.norm()}, {u.norm_inf()}")
 
 

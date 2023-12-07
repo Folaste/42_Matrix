@@ -2,7 +2,6 @@
     Exercise 09: Transpose
 """
 
-from complex import Complex
 from matrix import Matrix
 
 
@@ -24,10 +23,6 @@ def main():
     print(f'aT = \n{a.transpose()}')
 
     a = Matrix([[1, 2, 3, 4, 5]])
-    print(f'a = \n{a}')
-    print(f'aT = \n{a.transpose()}')
-
-    a = Matrix([[Complex(1, 2), Complex(3, 4)], [Complex(5, 6), Complex(7, 8)]])
     print(f'a = \n{a}')
     print(f'aT = \n{a.transpose()}')
 

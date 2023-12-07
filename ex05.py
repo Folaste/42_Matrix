@@ -2,7 +2,6 @@
     Exercise 05: Cosine
 """
 
-from complex import Complex
 from vector import Vector
 from ft_math import Re
 
@@ -44,11 +43,7 @@ def main():
     print(cosine(u, v))  # 0.974631846
     print()
 
-    u = Vector([Complex(1, 0), Complex(0, 0)])
-    v = Vector([Complex(1, 0), Complex(0, 0)])
-    print(cosine(u, v))
-    print()
-
+    # Exceptions
     u = Vector([0, 0])
     v = Vector([1., 1.])
     print(cosine(u, v))

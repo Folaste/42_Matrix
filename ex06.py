@@ -2,7 +2,6 @@
     Exercise 06: Cross Product
 """
 
-from complex import Complex
 from vector import Vector
 
 
@@ -36,10 +35,7 @@ def main():
     v = Vector([-2, -5, 16])
     print(cross_product(u, v))
 
-    u = Vector([Complex(1, 0), Complex(2, 1), Complex(1, 2)])
-    v = Vector([4, 7, 12])
-    print(cross_product(u, v))
-
+    # Exceptions
     u = Vector([1, 2])
     v = Vector([3, 4, 5])
     print(cross_product(u, v))

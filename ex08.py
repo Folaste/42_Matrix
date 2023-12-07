@@ -2,7 +2,6 @@
     Exercise 08: Trace
 """
 
-from complex import Complex
 from matrix import Matrix
 
 
@@ -27,10 +26,7 @@ def main():
     print(a)
     print(a.trace())
 
-    a = Matrix([[Complex(1, 2), Complex(3, 4)], [Complex(5, 6), Complex(7, 8)]])
-    print(a)
-    print(a.trace())
-
+    # Exception
     a = Matrix([[1, 2, 3], [4, 5, 6]])
     print(a)
     print(a.trace())
