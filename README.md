@@ -19,3 +19,5 @@ Furthermore, there is one file per exercise, from `ex00.py` to `ex<n>.py`.
 
 Only complex_created classes will be used for exercises, complex_builtin will be used for checking.
 In final version, complex_builtin is removed for import issues.
+
+Time and space complexity are calculated with [Big(O) Calculator](https://big-o-calculator.vercel.app/).

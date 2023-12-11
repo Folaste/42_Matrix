@@ -9,6 +9,8 @@ from vector import Vector
 
 def linear_combination(u: list[Vector], coefs: list[int | float | Complex]) -> Vector:
     """ Returns linear combination of vectors u and scalar coefficients coefs. """
+    # Time complexity: O(n)
+    # Space complexity: O(n)
     try:
         if len(u) != len(coefs):
             raise AssertionError("u and coefs must have same length.")

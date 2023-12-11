@@ -66,6 +66,8 @@ class Vector:
 
     # ex00
     def __add__(self, other):
+        # Time complexity: O(n)
+        # Space complexity: O(n)
         try:
             if not isinstance(other, Vector):
                 raise AssertionError("Vector can only be add with another vector.")
@@ -78,6 +80,8 @@ class Vector:
             print(e)
 
     def __sub__(self, other):
+        # Time complexity: O(n)
+        # Space complexity: O(n)
         try:
             if not isinstance(other, Vector):
                 raise AssertionError("Vector can only be subtract with another vector.")
@@ -92,9 +96,13 @@ class Vector:
     def __mul__(self, other):
         try:
             if isinstance(other, (int, float, Complex)):  # ex00
+                # Time complexity: O(n)
+                # Space complexity: O(n)
                 return Vector([self._elements[i] * other for i in range(0, self._dimension)])
 
             elif isinstance(other, Vector):  # ex03
+                # Time complexity: O(n)
+                # Space complexity: O(1)
                 if self._dimension != other._dimension:
                     raise ValueError("Vector must have same dimension.")
                 result = 0
@@ -116,6 +124,8 @@ class Vector:
     # ex04
     def norm_1(self) -> float:
         """ Returns Manhattan norm for the vector. """
+        # Time complexity: O(n)
+        # Space complexity: O(1)
         try:
             result = sum([ft_abs(elem, 'manhattan') for elem in self._elements])
             return float(result)
@@ -125,6 +135,8 @@ class Vector:
 
     def norm(self) -> float:
         """ Returns Euclidean norm for the vector. """
+        # Time complexity: O(n)
+        # Space complexity: O(1)
         try:
             result = sum(ft_pow(ft_abs(elem), 2) for elem in self._elements)
             return ft_sqrt(result)
@@ -134,6 +146,8 @@ class Vector:
 
     def norm_inf(self) -> float:
         """ Returns supremum norm for the vector. """
+        # Time complexity: O(n)
+        # Space complexity: O(1)
         try:
             val_abs = [ft_abs(elem, 'manhattan') for elem in self._elements]
             return float(max(val_abs))

@@ -84,6 +84,8 @@ class Matrix:
 
     # ex00
     def __add__(self, other):
+        # Time complexity: O(n^2)
+        # Space complexity: O(n^2)
         try:
             if not isinstance(other, Matrix):
                 raise AssertionError("Matrix can only be add with another matrix.")
@@ -102,6 +104,8 @@ class Matrix:
             print(e)
 
     def __sub__(self, other):
+        # Time complexity: O(n^2)
+        # Space complexity: O(n^2)
         try:
             if not isinstance(other, Matrix):
                 raise AssertionError("Matrix can only be subtract with another matrix.")
@@ -122,6 +126,8 @@ class Matrix:
     def __mul__(self, other):
         from vector import Vector
         try:
+            # Time complexity: O(n^2)
+            # Space complexity: O(n^2)
             if isinstance(other, (int, float, Complex)):  # ex00
                 result = []
                 for i in range(0, self._columns):
@@ -132,6 +138,8 @@ class Matrix:
                 return Matrix(result)
 
             elif isinstance(other, Vector):  # ex07
+                # Time complexity: O(n^2)
+                # Space complexity: O(n)
                 if self._columns == other.dim():
                     result = []
                     for i in range(self._rows):
@@ -145,6 +153,8 @@ class Matrix:
                                      "to the number of columns in the matrix.")
 
             elif isinstance(other, Matrix):  # ex07
+                # Time complexity: O(n^3)
+                # Space complexity: O(n^2)
                 if self._columns == other._rows:
                     result = []
                     for j in range(other._columns):
@@ -174,6 +184,8 @@ class Matrix:
     # ex08
     def trace(self):
         """ Returns the trace of the matrix. """
+        # Time complexity: O(n)
+        # Space complexity: O(1)
         try:
             if self.is_square():
                 return sum(self._elements[i][i] for i in range(self._rows))
@@ -186,11 +198,15 @@ class Matrix:
     # ex09
     def transpose(self):
         """ Returns the transpose of the matrix. """
+        # Time complexity: O(mn)
+        # Space complexity: O(mn)
         return Matrix([[self._elements[j][i] for j in range(self._columns)] for i in range(self._rows)])
 
     # ex10
     def row_echelon(self):
         """ Returns the row echelon form of the matrix. """
+        # Time complexity: O(n^3)
+        # Space complexity: O(n^2)
         # Apply transpose to the matrix to make it row-major order.
         ref = [[self._elements[j][i] for j in range(self._columns)] for i in range(self._rows)]
         r = 0
@@ -223,22 +239,17 @@ class Matrix:
 
     # ex11
     def determinant(self):
+        from ft_math import ft_pow
         """ Returns the determinant of the matrix."""
+        # Time complexity: O(n!)
+        # Space complexity: O(n)
         try:
             if self.is_square():
                 if self._rows == 1:
-                    return self._elements[0][0]
-                elif self._rows == 2:
-                    return self._elements[0][0] * self._elements[1][1] - self._elements[0][1] * self._elements[1][0]
-                elif self._rows == 3:
-                    return self._elements[0][0] * self.submatrix(0, 0).determinant() \
-                        - self._elements[0][1] * self.submatrix(1, 0).determinant() \
-                        + self._elements[0][2] * self.submatrix(2, 0).determinant()
-                elif self._rows == 4:
-                    return self._elements[0][0] * self.submatrix(0, 0).determinant() \
-                        - self._elements[0][1] * self.submatrix(1, 0).determinant() \
-                        + self._elements[0][2] * self.submatrix(2, 0).determinant() \
-                        - self._elements[0][3] * self.submatrix(3, 0).determinant()
+                    return self.elements[0][0]
+                elif self._rows <= 4:
+                    return sum(ft_pow(-1, i) * self.submatrix(i, 0).determinant() * self._elements[0][i]
+                               for i in range(self._rows))
                 else:
                     raise ValueError("Matrix must be smaller than 5x5.")
             else:
@@ -250,6 +261,8 @@ class Matrix:
     # ex12
     def inverse(self):
         """ Returns the inverse of the matrix. """
+        # Time complexity: O(n^3)
+        # Space complexity: O(n^2)
         from ft_math import ft_pow
         try:
             if self.is_square():
@@ -270,6 +283,8 @@ class Matrix:
     # ex13
     def rank(self):
         """ Returns the rank of the matrix. """
+        # Time complexity: O(n^2)
+        # Space complexity: O(1)
         ref = self.row_echelon()
         rank = 0
         for i in range(self._rows):

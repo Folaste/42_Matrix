@@ -26,25 +26,32 @@ def ex02():
 def ex03():
     u = Vector([Complex(2, 1), Complex(3, 4), Complex(3, -1)])
     v = Vector([1, 2, 5])
+    print(f"u =\n{u}")
+    print(f"v =\n{v}")
     print(u * v)
     print()
 
     u = Vector([Complex(-2, 1), Complex(3, 1), Complex(6, -1)])
     v = Vector([Complex(1, 2), Complex(0, 1), Complex(1, 0)])
+    print(f"u =\n{u}")
+    print(f"v =\n{v}")
     print(u * v)
     print()
 
 
 def ex04():
     u = Vector([Complex(2, 1), Complex(4, 3), Complex(-3, -2)])
+    print(f"u = \n{u}")
     print(f"{u.norm_1()}, {u.norm()}, {u.norm_inf()}")
 
 
 def ex05():
-    from ex05 import cosine
+    from ex05 import angle_cos
     u = Vector([Complex(1, 0), Complex(0, 0)])
     v = Vector([Complex(1, 0), Complex(0, 0)])
-    print(cosine(u, v))
+    print(f"u =\n{u}")
+    print(f"v =\n{v}")
+    print(angle_cos(u, v))
     print()
 
 

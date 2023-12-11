@@ -10,6 +10,8 @@ from vector import Vector
 
 def lerp(u, v, t) -> int | float | Complex | Matrix | Vector:
     """ Returns linear interpolation between u and v with factor t. """
+    # Time complexity: O(1)
+    # Space complexity: O(1)
     try:
         if (not isinstance(u, (int, float, Complex, Matrix, Vector)) or
                 not isinstance(v, (int, float, Complex, Matrix, Vector))):

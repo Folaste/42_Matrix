@@ -6,6 +6,9 @@ from vector import Vector
 
 
 def cross_product(u: Vector, v: Vector) -> Vector:
+    """ Returns cross product of vectors u and v. """
+    # Time complexity: O(1)
+    # Space complexity: O(1)
     try:
         if not isinstance(u, Vector) or not isinstance(v, Vector):
             raise TypeError()
