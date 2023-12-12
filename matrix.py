@@ -45,8 +45,6 @@ class Matrix:
 
             self._repr = elements  # Only used by __repr__()
 
-            # elements = [[elements[j][i] for j in range(nb_rows)] for i in range(nb_cols)]
-
             self._elements = elements
             self._rows = nb_cols
             self._columns = nb_rows
