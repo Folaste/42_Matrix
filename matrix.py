@@ -82,41 +82,35 @@ class Matrix:
 
     # ex00
     def __add__(self, other):
-        # Time complexity: O(n^2)
-        # Space complexity: O(n^2)
+        # Time complexity: O(n)
+        # Space complexity: O(n)
         try:
             if not isinstance(other, Matrix):
                 raise AssertionError("Matrix can only be add with another matrix.")
             if self._rows != other._rows or self._columns != other._columns:
                 raise AssertionError("Matrix must have same shape.")
 
-            result = []
-            for i in range(0, self._columns):
-                result_line = []
-                for j in range(0, self._rows):
-                    result_line.append(self._elements[i][j] + other._elements[i][j])
-                result.append(result_line)
-            return Matrix(result)
+            vect_1 = self.to_vector()
+            vect_2 = other.to_vector()
+            result = vect_1 + vect_2
+            return result.to_matrix(self._rows, self._columns)
 
         except AssertionError as e:
             print(e)
 
     def __sub__(self, other):
-        # Time complexity: O(n^2)
-        # Space complexity: O(n^2)
+        # Time complexity: O(n)
+        # Space complexity: O(n)
         try:
             if not isinstance(other, Matrix):
                 raise AssertionError("Matrix can only be subtract with another matrix.")
             if self._rows != other._rows or self._columns != other._columns:
                 raise AssertionError("Matrix must have same shape.")
 
-            result = []
-            for i in range(0, self._columns):
-                result_line = []
-                for j in range(0, self._rows):
-                    result_line.append(self._elements[i][j] - other._elements[i][j])
-                result.append(result_line)
-            return Matrix(result)
+            vect_1 = self.to_vector()
+            vect_2 = other.to_vector()
+            result = vect_1 - vect_2
+            return result.to_matrix(self._rows, self._columns)
 
         except AssertionError as e:
             print(e)
@@ -124,16 +118,12 @@ class Matrix:
     def __mul__(self, other):
         from vector import Vector
         try:
-            # Time complexity: O(n^2)
-            # Space complexity: O(n^2)
+            # Time complexity: O(1)
+            # Space complexity: O(1)
             if isinstance(other, (int, float, Complex)):  # ex00
-                result = []
-                for i in range(0, self._columns):
-                    result_line = []
-                    for j in range(0, self._rows):
-                        result_line.append(self._elements[i][j] * other)
-                    result.append(result_line)
-                return Matrix(result)
+                result = self.to_vector()
+                result = result * other
+                return result.to_matrix(self._rows, self._columns)
 
             elif isinstance(other, Vector):  # ex07
                 # Time complexity: O(n^2)

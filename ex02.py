@@ -29,6 +29,8 @@ def lerp(u, v, t) -> int | float | Complex | Matrix | Vector:
 
     except AssertionError as e:
         print(e)
+    except TypeError:
+        print("Cannot calculate linear interpolation between u and v.")
 
 
 def main():
@@ -44,7 +46,7 @@ def main():
     print(lerp(21, 42, 0.3))
     print()
 
-    print(lerp(Vector([2, 1]), Vector([4, 2]), 0.3))
+    print(lerp(Vector([2, 1]), Vector([4, 2, 4]), 0.3))
     print()
 
     print(lerp(Matrix([[2, 1], [3, 4]]), Matrix([[20, 10], [30, 40]]), 0.5))

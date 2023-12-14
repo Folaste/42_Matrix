@@ -28,6 +28,8 @@ def linear_combination(u: list[Vector], coefs: list[int | float | Complex]) -> V
 
     except AssertionError as e:
         print(e)
+    except TypeError:
+        print("Cannot calculate linear combination of u and coefs.")
 
 
 def main():
