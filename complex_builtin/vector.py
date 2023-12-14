@@ -54,7 +54,7 @@ class Vector:
 
     def to_matrix(self, rows, columns):
         """ Create a matrix with values of the vector. """
-        from matrix import Matrix
+        from complex_builtin.matrix import Matrix
         try:
             if self._dimension != rows * columns:
                 raise AssertionError("Matrix shape's product must be equal to vector's dimension")

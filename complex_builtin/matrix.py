@@ -86,13 +86,10 @@ class Matrix:
             if self._rows != other._rows or self._columns != other._columns:
                 raise AssertionError("Matrix must have same shape.")
 
-            result = []
-            for i in range(0, self._columns):
-                result_line = []
-                for j in range(0, self._rows):
-                    result_line.append(self._elements[i][j] + other._elements[i][j])
-                result.append(result_line)
-            return Matrix(result)
+            vect_1 = self.to_vector()
+            vect_2 = other.to_vector()
+            result = vect_1 + vect_2
+            return result.to_matrix(self._rows, self._columns)
 
         except AssertionError as e:
             print(e)
@@ -104,13 +101,10 @@ class Matrix:
             if self._rows != other._rows or self._columns != other._columns:
                 raise AssertionError("Matrix must have same shape.")
 
-            result = []
-            for i in range(0, self._columns):
-                result_line = []
-                for j in range(0, self._rows):
-                    result_line.append(self._elements[i][j] - other._elements[i][j])
-                result.append(result_line)
-            return Matrix(result)
+            vect_1 = self.to_vector()
+            vect_2 = other.to_vector()
+            result = vect_1 - vect_2
+            return result.to_matrix(self._rows, self._columns)
 
         except AssertionError as e:
             print(e)
@@ -119,13 +113,7 @@ class Matrix:
         from complex_builtin.vector import Vector
         try:
             if isinstance(other, (int, float, complex)):  # ex00
-                result = []
-                for i in range(0, self._columns):
-                    result_line = []
-                    for j in range(0, self._rows):
-                        result_line.append(self._elements[i][j] * other)
-                    result.append(result_line)
-                return Matrix(result)
+                return (self.to_vector() * other).to_matrix(self._rows, self._columns)
 
             elif isinstance(other, Vector):  # ex07
                 if self._columns == other.dim():
