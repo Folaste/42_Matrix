@@ -167,7 +167,9 @@ class Matrix:
             print(e)
 
     def __rmul__(self, other):
-        return self.__mul__(other)
+        from vector import Vector
+        if isinstance(other, (int, float, Complex, Vector, Matrix)):
+            return self.__mul__(other)
 
     # ex08
     def trace(self):

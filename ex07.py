@@ -29,6 +29,14 @@ def main():
     print(f"B * A =")
     print(b * a)
 
+    # c = b * a
+    # print(c * Vector([1, 1]))
+    # print(Vector([1, 1]) * c)
+    # print(c * Matrix([[1, 1], [2, 2]]))
+    # print(Matrix([[1, 1], [2, 2]]) * c)
+    # print(c * Vector([1, 1]))
+
+    print(None * Matrix([[1, 1], [2, 2]]))
 
 if __name__ == "__main__":
     main()

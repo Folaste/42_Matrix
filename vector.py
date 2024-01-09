@@ -119,7 +119,8 @@ class Vector:
             print(e)
 
     def __rmul__(self, other):
-        return self.__mul__(other)
+        if isinstance(other, (int, float, Complex, Vector)):
+            return self.__mul__(other)
 
     # ex04
     def norm_1(self) -> float:
