@@ -6,14 +6,18 @@ from vector import Vector
 
 
 def main():
-    u = Vector([0., 0., 0.])
-    print(f"{u.norm_1()}, {u.norm()}, {u.norm_inf()}")
+    try:
+        u = Vector([0., 0., 0.])
+        print(f"{u.norm_1()}, {u.norm()}, {u.norm_inf()}")
 
-    u = Vector([1., 2., 3.])
-    print(f"{u.norm_1()}, {u.norm()}, {u.norm_inf()}")
+        u = Vector([1., 2., 3.])
+        print(f"{u.norm_1()}, {u.norm()}, {u.norm_inf()}")
 
-    u = Vector([-1., -2.])
-    print(f"{u.norm_1()}, {u.norm()}, {u.norm_inf()}")
+        u = Vector([-1., -2.])
+        print(f"{u.norm_1()}, {u.norm()}, {u.norm_inf()}")
+
+    except Exception as e:
+        print(e)
 
 
 if __name__ == "__main__":

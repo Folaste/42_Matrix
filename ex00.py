@@ -633,7 +633,7 @@ def matrix_created():
     print("\x1b[32m| Exception: Not a number scalar |\x1b[0m")
     try:
         a = C_Matrix([[4, 1], [-4, 5]])
-        c = a * True
+        c = a * "True"
         print(c)
     except AssertionError as e:
         print(e)
@@ -641,8 +641,8 @@ def matrix_created():
 
 
 if __name__ == "__main__":
-    vector_builtin()
-    matrix_builtin()
-    print()
+    # vector_builtin()
+    # matrix_builtin()
+    # print()
     vector_created()
     matrix_created()

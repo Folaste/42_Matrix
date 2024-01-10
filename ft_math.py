@@ -14,7 +14,7 @@ def Re(z: Complex | float | int) -> float:
 
 def Im(z: Complex | int | float) -> float:
     if not isinstance(z, Complex):
-        return z
+        return 0
     return z.imaginary
 
 
@@ -28,15 +28,15 @@ def ft_abs(number: int | float | Complex, method='euclid') -> int | float:
         elif method == 'manhattan':
             return ft_abs(number.real) + ft_abs(number.imaginary)
     else:
-        raise AssertionError("Value must be a number.")
+        raise AssertionError("ft_math.ft_abs: Value must be a number.")
 
 
 def ft_pow(x: float | int, n: int) -> float:
     """ Returns value x^n, recursive way """
     if not isinstance(x, (float, int)) or not isinstance(n, int):
-        raise AssertionError("Values must be float for x, and int for n.")
+        raise AssertionError("ft_math.ft_pow: Values must be float for x, and int for n.")
     if n < 0:
-        raise AssertionError("Cannot calculate for a negative power.")
+        raise AssertionError("ft_math.ft_pow: Cannot calculate for a negative power.")
     elif n == 0:
         return 1
     else:
@@ -46,7 +46,7 @@ def ft_pow(x: float | int, n: int) -> float:
 def ft_sqrt(number: int | float, epsilon=1e-14, max_iterations=2000) -> int | float:
     """ Returns an approximation of square root, using Newton-Raphson method. """
     if not isinstance(number, (int, float)) or number < 0:
-        raise AssertionError("Value must be a positive number.")
+        raise AssertionError("ft_math.ft_sqrt: Value must be a positive number.")
     if number == 0:
         return 0.0
 
@@ -58,4 +58,4 @@ def ft_sqrt(number: int | float, epsilon=1e-14, max_iterations=2000) -> int | fl
         if (x * x - number) < epsilon:
             return x
 
-    raise AssertionError("Method didn't converge enough.")
+    raise AssertionError("ft_math.ft_sqrt: Method didn't converge enough.")

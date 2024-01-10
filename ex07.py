@@ -7,36 +7,32 @@ from vector import Vector
 
 
 def main():
-    a = Matrix([[1, 2], [3, 4], [5, 6]])
-    b = Matrix([[1, 2, 3], [4, 5, 6]])
-    print(f"A =\n{a}")
-    print(f"B =\n{b}")
-    print(f"A * B =\n{a * b}")
-    print(f"B * A =\n{b * a}")
+    try:
+        a = Matrix([[1, 2], [3, 4], [5, 6]])
+        b = Matrix([[1, 2, 3], [4, 5, 6]])
+        print(f"A =\n{a}")
+        print(f"B =\n{b}")
+        print(f"A * B =\n{a * b}")
+        print(f"B * A =\n{b * a}")
 
-    a = Matrix([[1, 2, 3], [4, 5, 6]])
-    b = Vector([3, -1])
-    print(f"A =\n{a}")
-    print(f"B =\n{b}")
-    print(f"A * B =\n{a * b}")
+        a = Matrix([[1, 2, 3], [4, 5, 6]])
+        b = Vector([3, -1])
+        print(f"A =\n{a}")
+        print(f"B =\n{b}")
+        print(f"A * B =\n{a * b}")
 
-    a = Matrix([[1, 2, 3], [4, 5, 6]])
-    b = Matrix([[1, 2], [3, 4], [5, 6], [7, 8]])
-    print(f"A =\n{a}")
-    print(f"B =\n{b}")
-    print(f"A * B =\n{a * b}")
-    # Exception
-    print(f"B * A =")
-    print(b * a)
+        a = Matrix([[1, 2, 3], [4, 5, 6]])
+        b = Matrix([[1, 2], [3, 4], [5, 6], [7, 8]])
+        print(f"A =\n{a}")
+        print(f"B =\n{b}")
+        print(f"A * B =\n{a * b}")
+        # Exception
+        print(f"B * A =")
+        print(b * a)
 
-    # c = b * a
-    # print(c * Vector([1, 1]))
-    # print(Vector([1, 1]) * c)
-    # print(c * Matrix([[1, 1], [2, 2]]))
-    # print(Matrix([[1, 1], [2, 2]]) * c)
-    # print(c * Vector([1, 1]))
+    except Exception as e:
+        print(e)
 
-    print(None * Matrix([[1, 1], [2, 2]]))
 
 if __name__ == "__main__":
     main()

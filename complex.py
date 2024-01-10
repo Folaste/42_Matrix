@@ -6,18 +6,13 @@
 class Complex:
 
     def __init__(self, *numbers) -> None:
-        try:
-            if not all(isinstance(component, (int, float)) for component in numbers):
-                raise AssertionError("Components must be int or float.")
-            if not len(numbers) == 2:
-                raise AssertionError("Constructor needs only 2 elements.")
+        if not all(isinstance(component, (int, float)) for component in numbers):
+            raise AssertionError("Complex.__init__: Components must be int or float.")
+        if not len(numbers) == 2:
+            raise AssertionError("Complex.__init__: Constructor needs only 2 elements.")
 
-            self._real = numbers[0]
-            self._imaginary = numbers[1]
-
-        except AssertionError as e:
-            print(e)
-            raise AssertionError("Error while creating Complex")
+        self._real = numbers[0]
+        self._imaginary = numbers[1]
 
     def __str__(self) -> str:
         sign = "+" if self._imaginary >= 0 else "-"

@@ -6,50 +6,46 @@
 class Matrix:
 
     def __init__(self, *elements) -> None:
-        try:
-            if not all(isinstance(elem, list) for elem in elements) or len(elements) != 1:
-                raise AssertionError("Constructor takes only 1 list.")
-            elements = elements[0]
+        if not all(isinstance(elem, list) for elem in elements) or len(elements) != 1:
+            raise AssertionError("matrix.__init__: Constructor takes only 1 list.")
+        elements = elements[0]
 
-            if not all(isinstance(line, list) for line in elements) or len(elements) == 0:
-                raise AssertionError("Matrix must contain lists.")
-            else:
-                width = len(elements[0])
-                for line in elements:
-                    if len(line) != width:
-                        raise AssertionError("All lists in matrix must have same length.")
-
-            nb_rows = len(elements)
-            nb_cols = len(elements[0])
-
+        if not all(isinstance(line, list) for line in elements) or len(elements) == 0:
+            raise AssertionError("matrix.__init__: Matrix must contain lists.")
+        else:
+            width = len(elements[0])
             for line in elements:
-                if len(line) == 0:
-                    raise AssertionError("Lines must contain numbers.")
+                if len(line) != width:
+                    raise AssertionError("matrix.__init__: All lists in matrix must have same length.")
 
-                if not all(isinstance(elem, (int, float, complex)) for elem in line):
-                    raise AssertionError("Matrix must only contain float, int or complex numbers.")
+        nb_rows = len(elements)
+        nb_cols = len(elements[0])
 
-                if (not all(isinstance(elem, complex) for elem in line) and
-                        not all(isinstance(elem, (int, float)) for elem in line)):
-                    raise AssertionError("Only real or complex numbers may be used in the rows of the matrix.")
+        for line in elements:
+            if len(line) == 0:
+                raise AssertionError("matrix.__init__: Lines must contain numbers.")
 
-            test_col = []
-            for i in range(len(elements)):
-                test_col.append(elements[i][0])
+            if not all(isinstance(elem, (int, float, complex)) for elem in line):
+                raise AssertionError("matrix.__init__: Matrix must only contain float, int or complex numbers.")
 
-            if (not all(isinstance(elem, (float, int)) for elem in test_col)
-                    and not all(isinstance(elem, complex) for elem in test_col)):
-                raise AssertionError("All elements must be in the same type. (Real or Complex numbers)")
+            if (not all(isinstance(elem, complex) for elem in line) and
+                    not all(isinstance(elem, (int, float)) for elem in line)):
+                raise AssertionError("matrix.__init__: Only real or complex numbers may be"
+                                     " used in the rows of the matrix.")
 
-            self._repr = elements  # Only used by __repr__()
+        test_col = []
+        for i in range(len(elements)):
+            test_col.append(elements[i][0])
 
-            self._elements = elements
-            self._rows = nb_cols
-            self._columns = nb_rows
+        if (not all(isinstance(elem, (float, int)) for elem in test_col)
+                and not all(isinstance(elem, complex) for elem in test_col)):
+            raise AssertionError("matrix.__init__: All elements must be in the same type. (Real or Complex numbers)")
 
-        except AssertionError as e:
-            print(e)
-            raise AssertionError("Error while creating Matrix")
+        self._repr = elements  # Only used by __repr__()
+
+        self._elements = elements
+        self._rows = nb_cols
+        self._columns = nb_rows
 
     # utils
     def __str__(self) -> str:
@@ -80,92 +76,77 @@ class Matrix:
 
     # ex00
     def __add__(self, other):
-        try:
-            if not isinstance(other, Matrix):
-                raise AssertionError("Matrix can only be add with another matrix.")
-            if self._rows != other._rows or self._columns != other._columns:
-                raise AssertionError("Matrix must have same shape.")
+        if not isinstance(other, Matrix):
+            raise AssertionError("matrix.__add__: Matrix can only be add with another matrix.")
+        if self._rows != other._rows or self._columns != other._columns:
+            raise AssertionError("matrix.__add__:Matrix must have same shape.")
 
-            vect_1 = self.to_vector()
-            vect_2 = other.to_vector()
-            result = vect_1 + vect_2
-            return result.to_matrix(self._rows, self._columns)
-
-        except AssertionError as e:
-            print(e)
+        vect_1 = self.to_vector()
+        vect_2 = other.to_vector()
+        result = vect_1 + vect_2
+        return result.to_matrix(self._rows, self._columns)
 
     def __sub__(self, other):
-        try:
-            if not isinstance(other, Matrix):
-                raise AssertionError("Matrix can only be subtract with another matrix.")
-            if self._rows != other._rows or self._columns != other._columns:
-                raise AssertionError("Matrix must have same shape.")
+        if not isinstance(other, Matrix):
+            raise AssertionError("matrix.__sub__:Matrix can only be subtract with another matrix.")
+        if self._rows != other._rows or self._columns != other._columns:
+            raise AssertionError("matrix.__sub__:Matrix must have same shape.")
 
-            vect_1 = self.to_vector()
-            vect_2 = other.to_vector()
-            result = vect_1 - vect_2
-            return result.to_matrix(self._rows, self._columns)
+        vect_1 = self.to_vector()
+        vect_2 = other.to_vector()
+        result = vect_1 - vect_2
 
-        except AssertionError as e:
-            print(e)
+        return result.to_matrix(self._rows, self._columns)
 
     def __mul__(self, other):
         from complex_builtin.vector import Vector
-        try:
-            if isinstance(other, (int, float, complex)):  # ex00
-                return (self.to_vector() * other).to_matrix(self._rows, self._columns)
+        if isinstance(other, (int, float, complex)):  # ex00
+            return (self.to_vector() * other).to_matrix(self._rows, self._columns)
 
-            elif isinstance(other, Vector):  # ex07
-                if self._columns == other.dim():
-                    result = []
+        elif isinstance(other, Vector):  # ex07
+            if self._columns == other.dim():
+                result = []
+                for i in range(self._rows):
+                    element = 0
+                    for j in range(other.dim()):
+                        element += self._elements[j][i] * other[j]
+                    result.append(element)
+                return Vector(result)
+            else:
+                raise ValueError("matrix.__mul__: The dimension of the vector must be equal "
+                                 "to the number of columns in the matrix.")
+
+        elif isinstance(other, Matrix):  # ex07
+            if self._columns == other._rows:
+                result = []
+                for j in range(other._columns):
+                    result_line = []
                     for i in range(self._rows):
                         element = 0
-                        for j in range(other.dim()):
-                            element += self._elements[j][i] * other[j]
-                        result.append(element)
-                    return Vector(result)
-                else:
-                    raise ValueError("The dimension of the vector must be equal "
-                                     "to the number of columns in the matrix.")
-
-            elif isinstance(other, Matrix):  # ex07
-                if self._columns == other._rows:
-                    result = []
-                    for j in range(other._columns):
-                        result_line = []
-                        for i in range(self._rows):
-                            element = 0
-                            for k in range(self._columns):
-                                element += self._elements[k][i] * other._elements[j][k]
-                            result_line.append(element)
-                        result.append(result_line)
-                    return Matrix(result)
-                else:
-                    raise ValueError("The number of columns in the first matrix must be equal "
-                                     "to the number of rows in the second matrix.")
-
+                        for k in range(self._columns):
+                            element += self._elements[k][i] * other._elements[j][k]
+                        result_line.append(element)
+                    result.append(result_line)
+                return Matrix(result)
             else:
-                raise AssertionError("Parameter must be a scalar (Real or Complex), a Vector or a Matrix.")
+                raise ValueError("matrix.__mul__: The number of columns in the first matrix must be equal "
+                                 "to the number of rows in the second matrix.")
 
-        except ValueError as e:
-            print(e)
-        except AssertionError as e:
-            print(e)
+        else:
+            raise AssertionError("matrix.__mul__: Parameter must be a scalar (Real or Complex), a Vector or a Matrix.")
 
     def __rmul__(self, other):
-        return self.__mul__(other)
+        from complex_builtin.vector import Vector
+        if isinstance(other, (int, float, complex, Vector)):
+            return self.__mul__(other)
 
     # ex08
     def trace(self):
         """ Returns the trace of the matrix. """
-        try:
-            if self.is_square():
-                return sum(self._elements[i][i] for i in range(self._rows))
-            else:
-                raise ValueError("Matrix must be square.")
-
-        except ValueError as e:
-            print(e)
+        if self.is_square():
+            return sum(self._elements[i][i] for i in range(self._rows))
+        else:
+            raise ValueError("matrix.trace: Matrix must be square.")
 
     # ex09
     def transpose(self):
@@ -208,48 +189,40 @@ class Matrix:
     # ex11
     def determinant(self):
         """ Returns the determinant of the matrix."""
-        try:
-            if self.is_square():
-                if self._rows == 1:
-                    return self._elements[0][0]
-                elif self._rows == 2:
-                    return self._elements[0][0] * self._elements[1][1] - self._elements[0][1] * self._elements[1][0]
-                elif self._rows == 3:
-                    return self._elements[0][0] * self.submatrix(0, 0).determinant() \
-                        - self._elements[0][1] * self.submatrix(1, 0).determinant() \
-                        + self._elements[0][2] * self.submatrix(2, 0).determinant()
-                elif self._rows == 4:
-                    return self._elements[0][0] * self.submatrix(0, 0).determinant() \
-                        - self._elements[0][1] * self.submatrix(1, 0).determinant() \
-                        + self._elements[0][2] * self.submatrix(2, 0).determinant() \
-                        - self._elements[0][3] * self.submatrix(3, 0).determinant()
-                else:
-                    raise ValueError("Matrix must be smaller than 5x5.")
+        if self.is_square():
+            if self._rows == 1:
+                return self._elements[0][0]
+            elif self._rows == 2:
+                return self._elements[0][0] * self._elements[1][1] - self._elements[0][1] * self._elements[1][0]
+            elif self._rows == 3:
+                return self._elements[0][0] * self.submatrix(0, 0).determinant() \
+                    - self._elements[0][1] * self.submatrix(1, 0).determinant() \
+                    + self._elements[0][2] * self.submatrix(2, 0).determinant()
+            elif self._rows == 4:
+                return self._elements[0][0] * self.submatrix(0, 0).determinant() \
+                    - self._elements[0][1] * self.submatrix(1, 0).determinant() \
+                    + self._elements[0][2] * self.submatrix(2, 0).determinant() \
+                    - self._elements[0][3] * self.submatrix(3, 0).determinant()
             else:
-                raise ValueError("Matrix must be square.")
-
-        except ValueError as e:
-            print(e)
+                raise ValueError("matrix.determinant: Matrix must be smaller than 5x5.")
+        else:
+            raise ValueError("matrix.determinant: Matrix must be square.")
 
     # ex12
     def inverse(self):
         """ Returns the inverse of the matrix. """
         from ft_math import ft_pow
-        try:
-            if self.is_square():
-                det = self.determinant()
-                if det == 0:
-                    raise ValueError("Matrix is not invertible.")
-                else:
-                    return Matrix([
-                        [ft_pow(-1, i + j) * self.submatrix(j, i).determinant()
-                         for j in range(self._rows)]
-                        for i in range(self._columns)]).transpose() * (1 / self.determinant())
+        if self.is_square():
+            det = self.determinant()
+            if det == 0:
+                raise ValueError("matrix.inverse: Matrix is not invertible.")
             else:
-                raise ValueError("Matrix must be square.")
-
-        except ValueError as e:
-            print(e)
+                return Matrix([
+                    [ft_pow(-1, i + j) * self.submatrix(j, i).determinant()
+                     for j in range(self._rows)]
+                    for i in range(self._columns)]).transpose() * (1 / self.determinant())
+        else:
+            raise ValueError("matrix.inverse: Matrix must be square.")
 
     # ex13
     def rank(self):
