@@ -137,6 +137,7 @@ def ex11():
     except Exception as e:
         print(e)
 
+
 def ex12():
     try:
         a = Matrix([[Complex(2, 1), Complex(3, 4), Complex(3, -1)],

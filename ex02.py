@@ -30,64 +30,38 @@ def lerp(u, v, t) -> int | float | Complex | Matrix | Vector:
 def main():
     try:
         print(lerp(0., 1., 0.))
-    except Exception as e:
-        print(e)
-    print()
+        print()
 
-    try:
         print(lerp(0, 1, 1))
-    except Exception as e:
-        print(e)
-    print()
+        print()
 
-    try:
         print(lerp(0., 1., 0.5))
-    except Exception as e:
-        print(e)
-    print()
+        print()
 
-    try:
         print(lerp(21, 42, 0.3))
-    except Exception as e:
-        print(e)
-    print()
+        print()
 
-    try:
         print(lerp(Vector([2, 1]), Vector([4, 2]), 0.3))
-    except Exception as e:
-        print(e)
-    print()
+        print()
 
-    try:
         print(lerp(Matrix([[2, 1], [3, 4]]), Matrix([[20, 10], [30, 40]]), 0.5))
-    except Exception as e:
-        print(e)
-    print()
+        print()
 
-    # Exceptions
-    try:
+        # Exceptions
         print(lerp("Test", "yes", 0.5))
-    except Exception as e:
-        print(e)
-    print()
+        print()
 
-    try:
         print(lerp(20, Complex(5, 4), 1))
-    except Exception as e:
-        print(e)
-    print()
+        print()
 
-    try:
         print(lerp(3, 7, 1.3))
-    except Exception as e:
-        print(e)
-    print()
+        print()
 
-    try:
         print(lerp(3, 17, -0.9))
+        print()
+
     except Exception as e:
         print(e)
-    print()
 
 
 if __name__ == "__main__":
